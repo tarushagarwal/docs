@@ -1,33 +1,148 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: 'Observing Calls'
+description: 'Guide to using the Vocera API for observing calls'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## Making an Observe Request
 
-## Welcome
+Send a POST request to `https://new-prod.vocera.ai/observability/v1/observe/` with the following specification:
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+### Headers
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+- `X-VOCERA-API-KEY`: Your API key copied from above
 
-## Authentication
+### Request Body
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+- `call_id` (required): Unique identifier for the call
+- **Either** `voice_recording` **or** `voice_recording_url` (required):
+  - `voice_recording`: Audio file of the call recording
+  - `voice_recording_url`: URL to the call recording audio file
+- `call_ended_reason` (optional): Reason for call termination
+- `customer_number` (optional): Phone number of the customer
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+### Method 1: Using a Voice Recording URL
+
+Send a voice recording URL to be processed by our API.
+
+#### Request Body
+- `call_id` (required): Unique identifier for the call
+- `voice_recording_url` (required): URL to the call recording audio file
+- `call_ended_reason` (optional): Reason for call termination
+- `customer_number` (optional): Phone number of the customer
+
+<CodeGroup>
+```bash Curl
+curl -X POST https://dashboard.vocera.ai/observability/v1/observe/ \
+  -H "X-VOCERA-API-KEY: your_api_key" \
+  -F "call_id=unique_call_id" \
+  -F "voice_recording_url=https://example.com/path/to/audio_file.wav" \
+  -F "call_ended_reason=optional_reason" \
+  -F "customer_number=optional_customer_number"
 ```
+
+```python Python
+def observe_call_with_url(api_key, call_id, audio_url, reason=None, customer_number=None):
+    url = 'https://dashboard.vocera.ai/observability/v1/observe/'
+    headers = {
+        'X-VOCERA-API-KEY': api_key
+    }
+
+    data = {
+        'call_id': call_id,
+        'voice_recording_url': audio_url,
+        'call_ended_reason': reason,
+        'customer_number': customer_number
+    }
+
+    response = requests.post(url, headers=headers, data=data)
+    return response.json()
+```
+
+```javascript JavaScript
+async function observeCallWithUrl(apiKey, callId, audioUrl, reason, customerNumber) {
+  const url = 'https://dashboard.vocera.ai/observability/v1/observe/';
+  const formData = new FormData();
+
+  formData.append('call_id', callId);
+  formData.append('voice_recording_url', audioUrl);
+
+  if (reason) formData.append('call_ended_reason', reason);
+  if (customerNumber) formData.append('customer_number', customerNumber);
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'X-VOCERA-API-KEY': apiKey
+    },
+    body: formData
+  });
+
+  return await response.json();
+}
+```
+</CodeGroup>
+
+### Method 2: Using a Voice Recording File
+
+Upload an audio file directly in the request.
+
+#### Request Body
+- `call_id` (required): Unique identifier for the call
+- `voice_recording` (required): Audio file of the call recording
+- `call_ended_reason` (optional): Reason for call termination
+- `customer_number` (optional): Phone number of the customer
+
+<CodeGroup>
+```bash Curl
+curl -X POST https://dashboard.vocera.ai/observability/v1/observe/ \
+  -H "X-VOCERA-API-KEY: your_api_key" \
+  -F "call_id=unique_call_id" \
+  -F "voice_recording=@/path/to/audio_file.wav" \
+  -F "call_ended_reason=optional_reason" \
+  -F "customer_number=optional_customer_number"
+```
+
+```python Python
+def observe_call_with_file(api_key, call_id, audio_file_path, reason=None, customer_number=None):
+    url = 'https://dashboard.vocera.ai/observability/v1/observe/'
+    headers = {
+        'X-VOCERA-API-KEY': api_key
+    }
+
+    files = {
+        'voice_recording': open(audio_file_path, 'rb')
+    }
+
+    data = {
+        'call_id': call_id,
+        'call_ended_reason': reason,
+        'customer_number': customer_number
+    }
+
+    response = requests.post(url, headers=headers, files=files, data=data)
+    return response.json()
+```
+
+```javascript JavaScript
+async function observeCallWithFile(apiKey, callId, audioFile, reason, customerNumber) {
+  const url = 'https://dashboard.vocera.ai/observability/v1/observe/';
+  const formData = new FormData();
+
+  formData.append('call_id', callId);
+  formData.append('voice_recording', audioFile);
+
+  if (reason) formData.append('call_ended_reason', reason);
+  if (customerNumber) formData.append('customer_number', customerNumber);
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'X-VOCERA-API-KEY': apiKey
+    },
+    body: formData
+  });
+
+  return await response.json();
+}
+```
+</CodeGroup>
