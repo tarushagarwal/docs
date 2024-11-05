@@ -19,6 +19,7 @@ Send a POST request to `https://new-prod.vocera.ai/observability/v1/observe/` wi
   - `voice_recording_url`: URL to the call recording audio file
 - `call_ended_reason` (optional): Reason for call termination
 - `customer_number` (optional): Phone number of the customer
+- `transcript_json` (optional): JSON object containing the transcript of the call
 
 ### Method 1: Using a Voice Recording URL
 
@@ -29,6 +30,7 @@ Send a voice recording URL to be processed by our API.
 - `voice_recording_url` (required): URL to the call recording audio file
 - `call_ended_reason` (optional): Reason for call termination
 - `customer_number` (optional): Phone number of the customer
+- `transcript_json` (optional): JSON object containing the transcript of the call
 
 <CodeGroup>
 ```bash Curl
@@ -37,7 +39,8 @@ curl -X POST https://dashboard.vocera.ai/observability/v1/observe/ \
   -F "call_id=unique_call_id" \
   -F "voice_recording_url=https://example.com/path/to/audio_file.wav" \
   -F "call_ended_reason=optional_reason" \
-  -F "customer_number=optional_customer_number"
+  -F "customer_number=optional_customer_number" \
+  -F "transcript_json={\"dummy_key\": \"dummy_value\"}"
 ```
 
 ```python Python
@@ -51,7 +54,12 @@ def observe_call_with_url(api_key, call_id, audio_url, reason=None, customer_num
         'call_id': call_id,
         'voice_recording_url': audio_url,
         'call_ended_reason': reason,
-        'customer_number': customer_number
+        'customer_number': customer_number,
+        'transcript_json': [{
+            "speaker": "agent",
+            "text": "Hello, how can I help you today?",
+            "timestamp": "2024-01-01T10:00:00Z"
+        }]
     }
 
     response = requests.post(url, headers=headers, data=data)
@@ -65,6 +73,11 @@ async function observeCallWithUrl(apiKey, callId, audioUrl, reason, customerNumb
 
   formData.append('call_id', callId);
   formData.append('voice_recording_url', audioUrl);
+  formData.append('transcript_json', JSON.stringify([{
+    speaker: "agent",
+    text: "Hello, how can I help you today?",
+    timestamp: "2024-01-01T10:00:00Z"
+  }]));
 
   if (reason) formData.append('call_ended_reason', reason);
   if (customerNumber) formData.append('customer_number', customerNumber);
@@ -91,6 +104,7 @@ Upload an audio file directly in the request.
 - `voice_recording` (required): Audio file of the call recording
 - `call_ended_reason` (optional): Reason for call termination
 - `customer_number` (optional): Phone number of the customer
+- `transcript_json` (optional): JSON object containing the transcript of the call
 
 <CodeGroup>
 ```bash Curl
@@ -100,6 +114,7 @@ curl -X POST https://dashboard.vocera.ai/observability/v1/observe/ \
   -F "voice_recording=@/path/to/audio_file.wav" \
   -F "call_ended_reason=optional_reason" \
   -F "customer_number=optional_customer_number"
+  -F "transcript_json={\"dummy_key\": \"dummy_value\"}"
 ```
 
 ```python Python
@@ -116,7 +131,12 @@ def observe_call_with_file(api_key, call_id, audio_file_path, reason=None, custo
     data = {
         'call_id': call_id,
         'call_ended_reason': reason,
-        'customer_number': customer_number
+        'customer_number': customer_number,
+        'transcript_json': [{
+            "speaker": "agent",
+            "text": "Hello, how can I help you today?",
+            "timestamp": "2024-01-01T10:00:00Z"
+        }]
     }
 
     response = requests.post(url, headers=headers, files=files, data=data)
@@ -130,6 +150,11 @@ async function observeCallWithFile(apiKey, callId, audioFile, reason, customerNu
 
   formData.append('call_id', callId);
   formData.append('voice_recording', audioFile);
+  formData.append('transcript_json', JSON.stringify([{
+    speaker: "agent",
+    text: "Hello, how can I help you today?",
+    timestamp: "2024-01-01T10:00:00Z"
+  }]));
 
   if (reason) formData.append('call_ended_reason', reason);
   if (customerNumber) formData.append('customer_number', customerNumber);
