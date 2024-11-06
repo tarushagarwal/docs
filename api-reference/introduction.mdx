@@ -14,6 +14,7 @@ Send a POST request to `https://new-prod.vocera.ai/observability/v1/observe/` wi
 ### Request Body
 
 - `call_id` (required): Unique identifier for the call
+- `agent_id` (required): The agent ID as shown on your dashboard
 - **Either** `voice_recording` **or** `voice_recording_url` (required):
   - `voice_recording`: Audio file of the call recording
   - `voice_recording_url`: URL to the call recording audio file
@@ -27,6 +28,7 @@ Send a voice recording URL to be processed by our API.
 
 #### Request Body
 - `call_id` (required): Unique identifier for the call
+- `agent_id` (required): The agent ID as shown on your dashboard
 - `voice_recording_url` (required): URL to the call recording audio file
 - `call_ended_reason` (optional): Reason for call termination
 - `customer_number` (optional): Phone number of the customer
@@ -37,6 +39,7 @@ Send a voice recording URL to be processed by our API.
 curl -X POST https://dashboard.vocera.ai/observability/v1/observe/ \
   -H "X-VOCERA-API-KEY: your_api_key" \
   -F "call_id=unique_call_id" \
+  -F "agent_id=your_agent_id" \
   -F "voice_recording_url=https://example.com/path/to/audio_file.wav" \
   -F "call_ended_reason=optional_reason" \
   -F "customer_number=optional_customer_number" \
@@ -44,7 +47,7 @@ curl -X POST https://dashboard.vocera.ai/observability/v1/observe/ \
 ```
 
 ```python Python
-def observe_call_with_url(api_key, call_id, audio_url, reason=None, customer_number=None):
+def observe_call_with_url(api_key, call_id, agent_id, audio_url, reason=None, customer_number=None):
     url = 'https://dashboard.vocera.ai/observability/v1/observe/'
     headers = {
         'X-VOCERA-API-KEY': api_key
@@ -52,6 +55,7 @@ def observe_call_with_url(api_key, call_id, audio_url, reason=None, customer_num
 
     data = {
         'call_id': call_id,
+        'agent_id': agent_id,
         'voice_recording_url': audio_url,
         'call_ended_reason': reason,
         'customer_number': customer_number,
@@ -67,11 +71,12 @@ def observe_call_with_url(api_key, call_id, audio_url, reason=None, customer_num
 ```
 
 ```javascript JavaScript
-async function observeCallWithUrl(apiKey, callId, audioUrl, reason, customerNumber) {
+async function observeCallWithUrl(apiKey, callId, agentId, audioUrl, reason, customerNumber) {
   const url = 'https://dashboard.vocera.ai/observability/v1/observe/';
   const formData = new FormData();
 
   formData.append('call_id', callId);
+  formData.append('agent_id', agentId);
   formData.append('voice_recording_url', audioUrl);
   formData.append('transcript_json', JSON.stringify([{
     speaker: "agent",
