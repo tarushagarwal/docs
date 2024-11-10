@@ -41,7 +41,10 @@
     {
       "group": "API Documentation",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/introduction",
+        "api-reference/scenarios/create-scenario",
+        "api-reference/scenarios/get-scenarios",
+        "api-reference/scenarios/running-scenarios"
       ]
     }
   ],
