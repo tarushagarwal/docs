@@ -29,7 +29,6 @@ Include your API key in the request headers:
 | `personality` | integer | Yes | ID of the personality to use |
 | `instructions` | string | Yes | Instructions for the scenario |
 | `agent` | integer | Yes | ID of the agent |
-| `metrics` | array | Yes | Array of metric IDs to track |
 
 ### Example Request Body
 
@@ -38,8 +37,7 @@ Include your API key in the request headers:
   "name": "Demo scenario",
   "personality": 2,
   "instructions": "Some instructions",
-  "agent": 4,
-  "metrics": [11, 1]
+  "agent": 4
 }
 ```
 
@@ -58,8 +56,6 @@ A successful request returns the created scenario details.
 | `personality_name` | string | Human-readable name of the personality |
 | `retell_agent_id` | string | UUID of the retell agent |
 | `runs` | array | List of scenario runs (empty for new scenarios) |
-| `metrics` | array | List of metric IDs being tracked |
-| `metric_names` | array | Human-readable names of the metrics |
 | `instructions` | string | Scenario instructions |
 
 ### Example Response
@@ -73,11 +69,6 @@ A successful request returns the created scenario details.
     "personality_name": "Frustrated Dutch, English",
     "retell_agent_id": "edc58747-b69d-47a5-be64-a1d6309c6c65",
     "runs": [],
-    "metrics": [11, 1],
-    "metric_names": [
-        "Deviation Avoidance",
-        "Appointment Bookeds"
-    ],
     "instructions": "Some instructions"
 }
 ```
@@ -94,15 +85,14 @@ curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenario-external/ \
     "name": "<scenario-name>",
     "agent": <agent-id>,
     "personality": <personality-id>,
-    "instructions": "<scenario-instructions>",
-    "metrics": [<metric-id-1>, <metric-id-2>, ...]
+    "instructions": "<scenario-instructions>"
   }'
 ```
 
 ```python Python
 import requests
 
-def create_scenario(api_key, name, agent_id, personality_id, instructions, metric_ids):
+def create_scenario(api_key, name, agent_id, personality_id, instructions):
     url = 'https://new-prod.vocera.ai/test_framework/v1/scenario-external/'
     
     headers = {
@@ -115,7 +105,6 @@ def create_scenario(api_key, name, agent_id, personality_id, instructions, metri
         'agent': agent_id,
         'personality': personality_id,
         'instructions': instructions,
-        'metrics': metric_ids
     }
 
     response = requests.post(url, headers=headers, json=data)
@@ -123,7 +112,7 @@ def create_scenario(api_key, name, agent_id, personality_id, instructions, metri
 ```
 
 ```javascript JavaScript
-async function createScenario(apiKey, name, personalityId, instructions, agentId, metricIds) {
+async function createScenario(apiKey, name, personalityId, instructions, agentId) {
   const url = 'https://new-prod.vocera.ai/test_framework/v1/scenarios-external/';
   
   const data = {
@@ -131,7 +120,6 @@ async function createScenario(apiKey, name, personalityId, instructions, agentId
     personality: personalityId,
     instructions,
     agent: agentId,
-    metrics: metricIds
   };
 
   const response = await fetch(url, {
