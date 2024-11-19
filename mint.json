@@ -42,10 +42,26 @@
       "group": "API Documentation",
       "pages": [
         "api-reference/introduction",
-        "api-reference/scenarios/create-scenario",
-        "api-reference/scenarios/get-scenarios",
-        "api-reference/scenarios/running-scenarios",
-        "api-reference/scenarios/llm-websocket-server-example"
+        {
+          "group": "Scenarios",
+          "pages": [
+            "api-reference/scenarios/create-scenario",
+            "api-reference/scenarios/get-scenarios",
+            "api-reference/scenarios/running-scenarios"
+          ]
+        },
+        {
+          "group": "Results",
+          "pages": [
+            "api-reference/results/get-results"
+          ]
+        },
+        {
+          "group": "LLM Websocket",
+          "pages": [
+            "api-reference/scenarios/llm-websocket-server-example"
+          ]
+        }
       ]
     }
   ],
