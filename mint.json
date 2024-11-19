@@ -44,7 +44,8 @@
         "api-reference/introduction",
         "api-reference/scenarios/create-scenario",
         "api-reference/scenarios/get-scenarios",
-        "api-reference/scenarios/running-scenarios"
+        "api-reference/scenarios/running-scenarios",
+        "api-reference/scenarios/llm-websocket-server-example"
       ]
     }
   ],
