@@ -46,6 +46,7 @@ The API returns a paginated list of scenarios.
 | `id` | integer | Unique identifier for the scenario |
 | `name` | string | Name of the scenario |
 | `personality_name` | string | Name of the associated personality |
+| `phone_number` | string | Phone number associated with scenario |
 
 ## Example Response
 
@@ -58,7 +59,8 @@ The API returns a paginated list of scenarios.
         {
             "id": 201,
             "name": "Hindi Elderly Telephonic Inquiry",
-            "personality_name": "Hindi, Old, Hearing Issue"
+            "personality_name": "Hindi, Old, Hearing Issue",
+            "phone_number": "+14159976447"
         },
         // Additional scenarios ...
     ]
@@ -73,7 +75,7 @@ The API returns a paginated list of scenarios.
 curl -X GET https://new-prod.vocera.ai/test_framework/v1/scenarios-external/ \
   -H "X-VOCERA-API-KEY: <your-api-key-here>" \
   -G \
-  -d "agent=<agent-id-number>"
+  -d "agent_id=<agent-id-number>"
 ```
 
 ```python Python
