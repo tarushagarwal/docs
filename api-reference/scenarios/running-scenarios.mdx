@@ -54,34 +54,28 @@ Running first N scenarios
 
 ## Response
 
-A successful request returns details about the running scenarios.
+A successful request returns details about created result.
 
 ### Response Fields
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `id` | integer | The scenario ID |
-| `phone_number` | string | Phone number assigned for the scenario |
-| `information_fields` | object | Additional scenario-specific information |
+| `id` | integer | The result ID |
+| `agent` | integer | ID of associated agent |
+| `status` | string | Status of the result, can be one of:<br/>• `running` - Initial state when scenario starts<br/>• `in_progress` - Call is currently executing<br/>• `completed` - Call has finished successfully<br/>• `failed` - Call encountered an error<br/>• `pending` - Testing agent is waiting to be called |
+| `success_rate` | float | Percentage of runs that passed |
+| `run_as_text` | boolean | If executed as text (llm websocket) or not |
 
 ### Example Response
 
 ```json
-[
-    {
-        "id": 201,
-        "phone_number": "+14159976447",
-        "information_fields": {
-            "name": "Edwin",
-            "age": 25
-        }
-    },
-    {
-        "id": 187,
-        "phone_number": "+14159976447",
-        "information_fields": {}
-    }
-]
+{
+    "id": 188,
+    "agent": 1,
+    "status": "running",
+    "success_rate": 0,
+    "run_as_text": false
+}
 ```
 
 ## Code Examples
@@ -224,28 +218,22 @@ A successful request returns details about the running scenarios.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `id` | integer | The scenario ID |
-| `phone_number` | string | Phone number assigned for the scenario |
-| `information_fields` | object | Additional scenario-specific information |
+| `id` | integer | The result ID |
+| `agent` | integer | ID of associated agent |
+| `status` | string | Status of the result, can be one of:<br/>• `running` - Initial state when scenario starts<br/>• `in_progress` - Call is currently executing<br/>• `completed` - Call has finished successfully<br/>• `failed` - Call encountered an error<br/>• `pending` - Testing agent is waiting to be called |
+| `success_rate` | float | Percentage of runs that passed |
+| `run_as_text` | boolean | If executed as text (llm websocket) or not |
 
 ### Example Response
 
 ```json
-[
-    {
-        "id": 201,
-        "phone_number": "+14159976447",
-        "information_fields": {
-            "name": "Edwin",
-            "age": 25
-        }
-    },
-    {
-        "id": 187,
-        "phone_number": "+14159976447",
-        "information_fields": {}
-    }
-]
+{
+    "id": 189,
+    "agent": 1,
+    "status": "running",
+    "success_rate": 0,
+    "run_as_text": true
+}
 ```
 
 ## Code Examples
