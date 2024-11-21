@@ -36,7 +36,7 @@ Send a voice recording URL to be processed by our API.
 
 <CodeGroup>
 ```bash Curl
-curl -X POST https://dashboard.vocera.ai/observability/v1/observe/ \
+curl -X POST https://new-prod.vocera.ai/observability/v1/observe/ \
   -H "X-VOCERA-API-KEY: your_api_key" \
   -F "call_id=unique_call_id" \
   -F "agent_id=your_agent_id" \
@@ -48,7 +48,7 @@ curl -X POST https://dashboard.vocera.ai/observability/v1/observe/ \
 
 ```python Python
 def observe_call_with_url(api_key, call_id, agent_id, audio_url, reason=None, customer_number=None):
-    url = 'https://dashboard.vocera.ai/observability/v1/observe/'
+    url = 'https://new-prod.vocera.ai/observability/v1/observe/'
     headers = {
         'X-VOCERA-API-KEY': api_key
     }
@@ -72,7 +72,7 @@ def observe_call_with_url(api_key, call_id, agent_id, audio_url, reason=None, cu
 
 ```javascript JavaScript
 async function observeCallWithUrl(apiKey, callId, agentId, audioUrl, reason, customerNumber) {
-  const url = 'https://dashboard.vocera.ai/observability/v1/observe/';
+  const url = 'https://new-prod.vocera.ai/observability/v1/observe/';
   const formData = new FormData();
 
   formData.append('call_id', callId);
@@ -113,7 +113,7 @@ Upload an audio file directly in the request.
 
 <CodeGroup>
 ```bash Curl
-curl -X POST https://dashboard.vocera.ai/observability/v1/observe/ \
+curl -X POST https://new-prod.vocera.ai/observability/v1/observe/ \
   -H "X-VOCERA-API-KEY: your_api_key" \
   -F "call_id=unique_call_id" \
   -F "voice_recording=@/path/to/audio_file.wav" \
@@ -124,7 +124,7 @@ curl -X POST https://dashboard.vocera.ai/observability/v1/observe/ \
 
 ```python Python
 def observe_call_with_file(api_key, call_id, audio_file_path, reason=None, customer_number=None):
-    url = 'https://dashboard.vocera.ai/observability/v1/observe/'
+    url = 'https://new-prod.vocera.ai/observability/v1/observe/'
     headers = {
         'X-VOCERA-API-KEY': api_key
     }
@@ -150,7 +150,7 @@ def observe_call_with_file(api_key, call_id, audio_file_path, reason=None, custo
 
 ```javascript JavaScript
 async function observeCallWithFile(apiKey, callId, audioFile, reason, customerNumber) {
-  const url = 'https://dashboard.vocera.ai/observability/v1/observe/';
+  const url = 'https://new-prod.vocera.ai/observability/v1/observe/';
   const formData = new FormData();
 
   formData.append('call_id', callId);
