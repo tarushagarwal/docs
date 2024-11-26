@@ -43,11 +43,11 @@
       "pages": [
         "api-reference/introduction",
         {
-          "group": "Scenarios",
+          "group": "Evaluators",
           "pages": [
-            "api-reference/scenarios/create-scenario",
-            "api-reference/scenarios/get-scenarios",
-            "api-reference/scenarios/running-scenarios"
+            "api-reference/evaluators/create-evaluators",
+            "api-reference/evaluators/get-evaluators",
+            "api-reference/evaluators/running-evaluators"
           ]
         },
         {
@@ -59,7 +59,7 @@
         {
           "group": "LLM Websocket",
           "pages": [
-            "api-reference/scenarios/llm-websocket-server-example"
+            "api-reference/evaluators/llm-websocket-server-example"
           ]
         }
       ]

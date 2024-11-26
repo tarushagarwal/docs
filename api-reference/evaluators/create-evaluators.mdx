@@ -1,11 +1,11 @@
 ---
-title: 'Creating Scenario'
-description: 'Learn how to create scenarios for your agents'
+title: 'Creating Evaluator'
+description: 'Learn how to create evaluators for your agents'
 ---
 
-# Create Scenario API
+# Create Evaluator API
 
-Create a new scenario for a specific agent with defined metrics and personality traits.
+Create a new evaluator for a specific agent with defined metrics and personality traits.
 
 ## API Endpoint
 
@@ -25,16 +25,16 @@ Include your API key in the request headers:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `name` | string | Yes | Name of the scenario |
+| `name` | string | Yes | Name of the evaluator |
 | `personality` | integer | Yes | ID of the personality to use |
-| `instructions` | string | Yes | Instructions for the scenario |
+| `instructions` | string | Yes | Instructions for the evaluator |
 | `agent` | integer | Yes | ID of the agent |
 
 ### Example Request Body
 
 ```json
 {
-  "name": "Demo scenario",
+  "name": "Demo evaluator",
   "personality": 2,
   "instructions": "Some instructions",
   "agent": 4
@@ -43,27 +43,27 @@ Include your API key in the request headers:
 
 ## Response
 
-A successful request returns the created scenario details.
+A successful request returns the created evaluator details.
 
 ### Response Fields
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `id` | integer | Unique identifier for the scenario |
-| `name` | string | Name of the scenario |
+| `id` | integer | Unique identifier for the evaluator |
+| `name` | string | Name of the evaluator |
 | `agent` | integer | ID of the associated agent |
 | `personality` | integer | ID of the personality used |
 | `personality_name` | string | Human-readable name of the personality |
 | `retell_agent_id` | string | UUID of the retell agent |
-| `runs` | array | List of scenario runs (empty for new scenarios) |
-| `instructions` | string | Scenario instructions |
+| `runs` | array | List of evaluator runs (empty for new evaluators) |
+| `instructions` | string | Evaluator instructions |
 
 ### Example Response
 
 ```json
 {
     "id": 202,
-    "name": "Demo scenario",
+    "name": "Demo evaluator",
     "agent": 4,
     "personality": 2,
     "personality_name": "Frustrated Dutch, English",
@@ -82,17 +82,17 @@ curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenario-external/ \
   -H "X-VOCERA-API-KEY: <your-api-key-here>" \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "<scenario-name>",
+    "name": "<evaluator-name>",
     "agent": <agent-id>,
     "personality": <personality-id>,
-    "instructions": "<scenario-instructions>"
+    "instructions": "<evaluator-instructions>"
   }'
 ```
 
 ```python Python
 import requests
 
-def create_scenario(api_key, name, agent_id, personality_id, instructions):
+def create_evaluator(api_key, name, agent_id, personality_id, instructions):
     url = 'https://new-prod.vocera.ai/test_framework/v1/scenario-external/'
     
     headers = {
@@ -112,7 +112,7 @@ def create_scenario(api_key, name, agent_id, personality_id, instructions):
 ```
 
 ```javascript JavaScript
-async function createScenario(apiKey, name, personalityId, instructions, agentId) {
+async function createEvaluator(apiKey, name, personalityId, instructions, agentId) {
   const url = 'https://new-prod.vocera.ai/test_framework/v1/scenarios-external/';
   
   const data = {

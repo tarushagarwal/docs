@@ -1,10 +1,10 @@
 ---
-title: 'Getting Scenarios'
-description: 'Learn how to retrieve scenarios for your agents'
+title: 'Getting Evaluators'
+description: 'Learn how to retrieve evaluators for your agents'
 ---
 
-# Get Scenarios API
-Retrieve a list of scenarios for an agent
+# Get Evaluators API
+Retrieve a list of evaluators for an agent
 
 ## API Endpoint
 
@@ -24,29 +24,29 @@ Include your API key in the request headers:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `agent_id` | integer | Yes | Filter scenarios by agent ID |
+| `agent_id` | integer | Yes | Filter evaluators by agent ID |
 
 ## Response Format
 
-The API returns a paginated list of scenarios.
+The API returns a paginated list of evaluators.
 
 ### Response Properties
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `count` | integer | Total number of scenarios |
+| `count` | integer | Total number of evaluators |
 | `next` | string\|null | URL for the next page of results |
 | `previous` | string\|null | URL for the previous page of results |
-| `results` | array | List of scenario objects |
+| `results` | array | List of evaluator objects |
 
-### Scenario Object
+### Evaluator Object
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `id` | integer | Unique identifier for the scenario |
-| `name` | string | Name of the scenario |
+| `id` | integer | Unique identifier for the evaluator |
+| `name` | string | Name of the evaluator |
 | `personality_name` | string | Name of the associated personality |
-| `phone_number` | string | Phone number associated with scenario |
+| `phone_number` | string | Phone number associated with evaluator |
 
 ## Example Response
 
@@ -62,7 +62,7 @@ The API returns a paginated list of scenarios.
             "personality_name": "Hindi, Old, Hearing Issue",
             "phone_number": "+14159976447"
         },
-        // Additional scenarios ...
+        // Additional evaluators ...
     ]
 }
 ```
@@ -81,7 +81,7 @@ curl -X GET https://new-prod.vocera.ai/test_framework/v1/scenarios-external/ \
 ```python Python
 import requests
 
-def get_scenarios(api_key, agent_id):
+def get_evaluators(api_key, agent_id):
     url = 'https://new-prod.vocera.ai/test_framework/v1/scenarios-external/'
     headers = {
         'X-VOCERA-API-KEY': api_key
@@ -95,7 +95,7 @@ def get_scenarios(api_key, agent_id):
 ```
 
 ```javascript JavaScript
-async function getScenarios(apiKey, agentId) {
+async function getEvaluators(apiKey, agentId) {
   const baseUrl = 'https://new-prod.vocera.ai/test_framework/v1/scenarios-external/';
   const params = new URLSearchParams({ agent_id: agentId });
   const url = `${baseUrl}?${params}`;
