@@ -38,7 +38,7 @@ A successful request returns details about created result.
 |-------|------|-------------|
 | `id` | integer | The result ID |
 | `agent` | integer | ID of associated agent |
-| `status` | string | Status of the result, can be one of:<br/>• `running` - Initial state when scenario starts<br/>• `in_progress` - Call is currently executing<br/>• `completed` - Call has finished successfully<br/>• `failed` - Call encountered an error<br/>• `pending` - Testing agent is waiting to be called |
+| `status` | string | Status of the result, can be one of:<br/>• `running` - Initial state when evaluator starts<br/>• `in_progress` - Call is currently executing<br/>• `completed` - Call has finished successfully<br/>• `failed` - Call encountered an error<br/>• `pending` - Testing agent is waiting to be called |
 | `success_rate` | float | Percentage of runs that passed |
 | `run_as_text` | boolean | If executed as text (llm websocket) or not |
 
