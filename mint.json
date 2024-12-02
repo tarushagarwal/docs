@@ -43,6 +43,13 @@
       "pages": [
         "api-reference/introduction",
         {
+          "group": "Agents",
+          "pages": [
+            "api-reference/agents/create-agents",
+            "api-reference/agents/update-agents"
+          ]
+        },
+        {
           "group": "Evaluators",
           "pages": [
             "api-reference/evaluators/create-evaluators",
