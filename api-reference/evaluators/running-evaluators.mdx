@@ -236,6 +236,73 @@ A successful request returns details about the running evaluators.
 }
 ```
 
+## WebSocket Message Format
+
+Messages exchanged through the LLM WebSocket connection follow two main formats: normal messages and function calls.
+
+### Message Types
+
+#### Normal Messages
+Simple text messages exchanged between the client and server.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `content` | string | The text message content |
+
+```json
+{
+  "content": "Hello! How can I help you today?"
+}
+```
+
+#### Function Messages
+Messages related to function execution, including both calls and results.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `role` | string | Message type: `Function Call` or `Function Call Result` |
+| `data` | object | Function-specific information (see below) |
+
+**Function Call Data Fields:**
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique identifier for the function call |
+| `name` | string | Name of the function being called |
+| `arguments` | string | JSON-encoded function arguments |
+
+**Function Result Data Fields:**
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Matching identifier from the function call |
+| `name` | string | Name of the executed function |
+| `result` | string | Function execution result or error message |
+
+### Examples
+
+**Function Call:**
+```json
+{
+    "role": "Function Call",
+    "data": {
+        "id": "call_5otWH44dxeXEHY8RlhYYaFbV",
+        "name": "bookUserAppointment",
+        "arguments": "{\"name\": \"John\", \"datetime\": \"2024-10-17T18:00:00\"}"
+    }
+}
+```
+
+**Function Result:**
+```json
+{
+    "role": "Function Call Result",
+    "data": {
+        "id": "call_5otWH44dxeXEHY8RlhYYaFbV",
+        "name": "bookUserAppointment",
+        "result": "Appointment successfully booked"
+    }
+}
+```
+
 ## Code Examples
 
 <CodeGroup>
