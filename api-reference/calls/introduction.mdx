@@ -20,7 +20,7 @@ Send a POST request to `https://new-prod.vocera.ai/observability/v1/observe/` wi
   - `voice_recording_url`: URL to the call recording audio file
 - `call_ended_reason` (optional): Reason for call termination
 - `customer_number` (optional): Phone number of the customer
-- `transcript_json` (optional): JSON object containing the transcript of the call. Can be in Vocera, Vapi or Retell format
+- `transcript_json` (required): JSON object containing the transcript of the call. Can be in Vocera, Vapi or Retell format
 
 **Transcript JSON Example:**
 
@@ -361,7 +361,7 @@ Send a voice recording URL to be processed by our API.
 - `voice_recording_url` (required): URL to the call recording audio file
 - `call_ended_reason` (optional): Reason for call termination
 - `customer_number` (optional): Phone number of the customer
-- `transcript_json` (optional): JSON object containing the transcript of the call
+- `transcript_json` (required): JSON object containing the transcript of the call
 
 <CodeGroup>
 ```bash Curl
@@ -439,7 +439,7 @@ Upload an audio file directly in the request.
 - `voice_recording` (required): Audio file of the call recording
 - `call_ended_reason` (optional): Reason for call termination
 - `customer_number` (optional): Phone number of the customer
-- `transcript_json` (optional): JSON object containing the transcript of the call
+- `transcript_json` (required): JSON object containing the transcript of the call
 
 <CodeGroup>
 ```bash Curl
