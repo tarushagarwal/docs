@@ -20,9 +20,12 @@ Send a POST request to `https://new-prod.vocera.ai/observability/v1/observe/` wi
   - `voice_recording_url`: URL to the call recording audio file
 - `call_ended_reason` (optional): Reason for call termination
 - `customer_number` (optional): Phone number of the customer
-- `transcript_json` (optional): JSON object containing the transcript of the call
+- `transcript_json` (optional): JSON object containing the transcript of the call. Can be in Vocera, Vapi or Retell format
 
 **Transcript JSON Example:**
+
+Vocera Format
+
 ```json
 [
    {
@@ -124,6 +127,226 @@ Send a POST request to `https://new-prod.vocera.ai/observability/v1/observe/` wi
       "content": "Bye.",
       "end_time": 33.6,
       "start_time": 33.1
+   }
+]
+```
+
+Vapi Format
+
+```json
+[
+   {
+      "role": "user",
+      "message": "Hello. This is John calling from.",
+      "time": 1728862776876,
+      "endTime": 1728862778816,
+      "secondsFromStart": 2.32,
+      "duration": 1940
+   },
+   {
+      "role": "bot",
+      "message": "Yeah. What do you want?",
+      "time": 1728862782375.9998,
+      "endTime": 1728862784086,
+      "secondsFromStart": 7.8199997,
+      "duration": 1390.001220703125,
+      "source": ""
+   },
+   {
+      "role": "user",
+      "message": "Hi. So I wanted to verify if I'm speaking to Alex too.",
+      "time": 1728862785216,
+      "endTime": 1728862789286,
+      "secondsFromStart": 10.66,
+      "duration": 4070
+   },
+   {
+      "role": "bot",
+      "message": "Yeah. It's Alex. What do you need?",
+      "time": 1728862789756,
+      "endTime": 1728862791396,
+      "secondsFromStart": 15.2,
+      "duration": 1640,
+      "source": ""
+   },
+   {
+      "role": "user",
+      "message": "So that's great. Welcome to any mortgage. I'm happy to say that your loan has been approved. Uh, just before we begin, I'm gonna tell you that this call is gonna be recorded for training and monitoring purposes. Hello. So can you please confirm your name and email address for me?",
+      "time": 1728862792936,
+      "endTime": 1728862811816,
+      "secondsFromStart": 18.38,
+      "duration": 15119.998046875
+   },
+   {
+      "role": "bot",
+      "message": "Alex Dieuet.",
+      "time": 1728862813506,
+      "endTime": 1728862814246.002,
+      "secondsFromStart": 38.95,
+      "duration": 740.001953125,
+      "source": ""
+   },
+   {
+      "role": "user",
+      "message": "And the email address, please?",
+      "time": 1728862815716,
+      "endTime": 1728862818346,
+      "secondsFromStart": 41.16,
+      "duration": 2229.9970703125
+   },
+   {
+      "role": "bot",
+      "message": "Um, why do you need that?",
+      "time": 1728862819406,
+      "endTime": 1728862820846,
+      "secondsFromStart": 44.85,
+      "duration": 1440,
+      "source": ""
+   },
+   {
+      "role": "user",
+      "message": "I just need it for verification.",
+      "time": 1728862821776,
+      "endTime": 1728862823586,
+      "secondsFromStart": 47.22,
+      "duration": 1810
+   },
+   {
+      "role": "bot",
+      "message": "Fine. It's alex dot outlook dot com.",
+      "time": 1728862824396,
+      "endTime": 1728862826736,
+      "secondsFromStart": 49.84,
+      "duration": 2340,
+      "source": ""
+   },
+   {
+      "role": "user",
+      "message": "Okay. Great. And your",
+      "time": 1728862828056,
+      "endTime": 1728862829836,
+      "secondsFromStart": 53.5,
+      "duration": 1780
+   },
+   {
+      "role": "bot",
+      "message": "Yeah.",
+      "time": 1728862829276,
+      "endTime": 1728862829776,
+      "secondsFromStart": 54.72,
+      "duration": 500,
+      "source": ""
+   },
+   {
+      "role": "user",
+      "message": "physical mailing address as well, please?",
+      "time": 1728862830406.002,
+      "endTime": 1728862832186,
+      "secondsFromStart": 55.850002,
+      "duration": 1779.998046875
+   },
+   {
+      "role": "bot",
+      "message": "3753 Conifer Drive",
+      "time": 1728862833036,
+      "endTime": 1728862835056,
+      "secondsFromStart": 58.48,
+      "duration": 2020,
+      "source": ""
+   },
+   {
+      "role": "user",
+      "message": "Great. That's it. Okay.",
+      "time": 1728862836466,
+      "endTime": 1728862838346,
+      "secondsFromStart": 61.91,
+      "duration": 1780
+   },
+   {
+      "toolCalls": [
+         {
+            "id": "call_8VwgRTTlD2084TgFhoIFScCy",
+            "type": "function",
+            "function": {
+               "name": "endCall",
+               "arguments": "{}"
+            }
+         }
+      ],
+      "role": "tool_calls",
+      "message": "",
+      "time": 1728862838338,
+      "secondsFromStart": 62.614
+   },
+   {
+      "role": "tool_call_result",
+      "time": 1728862839057,
+      "secondsFromStart": 63.333,
+      "name": "endCall",
+      "result": "Success.",
+      "toolCallId": "call_8VwgRTTlD2084TgFhoIFScCy"
+   }
+]
+```
+
+Retell Format
+
+```json
+[
+   {
+      "role": "user",
+      "content": "Hello."
+   },
+   {
+      "role": "agent",
+      "content": "Hello! How can I assist you today?",
+      "metadata": {
+         "response_id": 1
+      }
+   },
+   {
+      "role": "user",
+      "content": "I want to book appointment. My name is John, and I want to book at 7 PM."
+   },
+   {
+      "role": "agent",
+      "content": "Could you please confirm the date for the appointment?",
+      "metadata": {
+         "response_id": 4
+      }
+   },
+   {
+      "role": "user",
+      "content": "Today."
+   },
+   {
+      "role": "tool_call_invocation",
+      "tool_call_id": "f05058577a1f4ec4",
+      "name": "bookAppointment",
+      "arguments": "{\"name\":\"John\",\"datetime\":\"2023-11-01T19:00:00\"}"
+   },
+   {
+      "role": "tool_call_result",
+      "tool_call_id": "f05058577a1f4ec4",
+      "content": ""
+   },
+   {
+      "role": "agent",
+      "content": "Your appointment has been booked",
+      "metadata": {
+         "response_id": 6
+      }
+   },
+   {
+      "role": "user",
+      "content": "Okay then. Bye bye."
+   },
+   {
+      "role": "agent",
+      "content": "Goodbye! Have a great day! 😊",
+      "metadata": {
+         "response_id": 21
+      }
    }
 ]
 ```
