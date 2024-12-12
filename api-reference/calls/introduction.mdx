@@ -14,7 +14,9 @@ Send a POST request to `https://new-prod.vocera.ai/observability/v1/observe/` wi
 ### Request Body
 
 - `call_id` (required): Unique identifier for the call
-- `agent` (required): The agent ID as shown on your dashboard
+- **Either** `agent` **or** `assistant_id` (required):
+  - `agent`: The agent ID as shown on your dashboard
+  - `assistant_id`: The assistant ID associated with agent
 - **Either** `voice_recording` **or** `voice_recording_url` (required):
   - `voice_recording`: Audio file of the call recording
   - `voice_recording_url`: URL to the call recording audio file
@@ -376,7 +378,16 @@ curl -X POST https://new-prod.vocera.ai/observability/v1/observe/ \
 ```
 
 ```python Python
-def observe_call_with_url(api_key, call_id, agent_id, audio_url, transcript_json, reason=None, customer_number=None):
+def observe_call_with_url(
+       api_key, 
+       call_id, 
+       audio_file_path, 
+       transcript_json, 
+       agent_id=None, 
+       assistant_id=None, 
+       reason=None, 
+       customer_number=None
+   ):
     url = 'https://new-prod.vocera.ai/observability/v1/observe/'
     headers = {
         'X-VOCERA-API-KEY': api_key
@@ -384,26 +395,45 @@ def observe_call_with_url(api_key, call_id, agent_id, audio_url, transcript_json
 
     data = {
         'call_id': call_id,
-        'agent': agent_id,
         'voice_recording_url': audio_url,
-        'call_ended_reason': reason,
-        'customer_number': customer_number,
         'transcript_json': transcript_json
     }
+    if agent_id:
+        data["agent"] = agent_id
+    elif assistant_id:
+        data["assistant_id"] = assistant_id
+
+    if reason:
+        data["call_ended_reason"] = reason
+    if customer_number:
+        data["customer_number"] = customer_number
 
     response = requests.post(url, headers=headers, data=data)
     return response.json()
 ```
 
 ```javascript JavaScript
-async function observeCallWithUrl(apiKey, callId, agentId, audioUrl, transcriptJson, reason, customerNumber) {
+async function observeCallWithUrl(
+    apiKey, 
+    callId, 
+    audioFile, 
+    transcriptJson, 
+    agentId=null, 
+    assistantId=null, 
+    reason=null, 
+    customerNumber=null,
+  ) {
   const url = 'https://new-prod.vocera.ai/observability/v1/observe/';
   const formData = new FormData();
 
   formData.append('call_id', callId);
-  formData.append('agent', agentId);
   formData.append('voice_recording_url', audioUrl);
   formData.append('transcript_json', JSON.stringify(transcriptJson));
+
+  if (agentId)
+    formData.append('agent', agentId);
+  else if (assistantId)
+    formData.append('assistant_id', assistantId);
 
   if (reason) formData.append('call_ended_reason', reason);
   if (customerNumber) formData.append('customer_number', customerNumber);
@@ -446,7 +476,16 @@ curl -X POST https://new-prod.vocera.ai/observability/v1/observe/ \
 ```
 
 ```python Python
-def observe_call_with_file(api_key, call_id, agent_id, audio_file_path, transcript_json, reason=None, customer_number=None):
+def observe_call_with_file(
+       api_key, 
+       call_id, 
+       audio_file_path, 
+       transcript_json, 
+       agent_id=None, 
+       assistant_id=None, 
+       reason=None, 
+       customer_number=None
+   ):
     url = 'https://new-prod.vocera.ai/observability/v1/observe/'
     headers = {
         'X-VOCERA-API-KEY': api_key
@@ -458,25 +497,44 @@ def observe_call_with_file(api_key, call_id, agent_id, audio_file_path, transcri
 
     data = {
         'call_id': call_id,
-        'agent': agent_id,
-        'call_ended_reason': reason,
-        'customer_number': customer_number,
         'transcript_json': transcript_json
     }
+    if agent_id:
+        data["agent"] = agent_id
+    elif assistant_id:
+        data["assistant_id"] = assistant_id
+
+    if reason:
+        data["call_ended_reason"] = reason
+    if customer_number:
+        data["customer_number"] = customer_number
 
     response = requests.post(url, headers=headers, files=files, data=data)
     return response.json()
 ```
 
 ```javascript JavaScript
-async function observeCallWithFile(apiKey, callId, agentId, audioFile, transcriptJson, reason, customerNumber) {
+async function observeCallWithFile(
+    apiKey, 
+    callId, 
+    audioFile, 
+    transcriptJson, 
+    agentId=null, 
+    assistantId=null, 
+    reason=null, 
+    customerNumber=null,
+  ) {
   const url = 'https://new-prod.vocera.ai/observability/v1/observe/';
   const formData = new FormData();
 
   formData.append('call_id', callId);
-  formData.append('agent', agentId);
   formData.append('voice_recording', audioFile);
   formData.append('transcript_json', JSON.stringify(transcriptJson));
+
+  if (agentId)
+    formData.append('agent', agentId);
+  else if (assistantId)
+    formData.append('assistant_id', assistantId);
 
   if (reason) formData.append('call_ended_reason', reason);
   if (customerNumber) formData.append('customer_number', customerNumber);
