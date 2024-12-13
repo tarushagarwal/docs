@@ -53,7 +53,8 @@
           "pages": [
             "api-reference/agents/create-agents",
             "api-reference/agents/get-agents",
-            "api-reference/agents/update-agents"
+            "api-reference/agents/update-agents",
+            "api-reference/agents/delete-agents"
           ]
         },
         {
