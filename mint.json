@@ -52,7 +52,7 @@
           "group": "Agents",
           "pages": [
             "api-reference/agents/create-agents",
-            "api-reference/agents/get-agents",
+            "api-reference/agents/list-agents",
             "api-reference/agents/update-agents"
           ]
         },
@@ -60,13 +60,14 @@
           "group": "Evaluators",
           "pages": [
             "api-reference/evaluators/create-evaluators",
-            "api-reference/evaluators/get-evaluators",
+            "api-reference/evaluators/list-evaluators",
             "api-reference/evaluators/running-evaluators"
           ]
         },
         {
           "group": "Results",
           "pages": [
+            "api-reference/results/list-results",
             "api-reference/results/get-results"
           ]
         },
