@@ -54,6 +54,7 @@
             "api-reference/agents/create-agents",
             "api-reference/agents/list-agents",
             "api-reference/agents/update-agents"
+            "api-reference/agents/delete-agents"
           ]
         },
         {
