@@ -45,7 +45,8 @@
           "group": "Calls",
           "pages": [
             "api-reference/calls/introduction",
-            "api-reference/calls/get-calls"
+            "api-reference/calls/get-calls",
+            "api-reference/calls/reevaluate-calls"
           ]
         },
         {
@@ -69,7 +70,9 @@
           "group": "Results",
           "pages": [
             "api-reference/results/list-results",
-            "api-reference/results/get-results"
+            "api-reference/results/get-results",
+            "api-reference/results/rerun-results",
+            "api-reference/results/reevaluate-metrics"
           ]
         },
         {
