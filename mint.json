@@ -74,7 +74,10 @@
           "group": "Evaluators",
           "pages": [
             "api-reference/evaluators/create-evaluators",
+            "api-reference/evaluators/generate-evaluators",
+            "api-reference/evaluators/update-evaluators",
             "api-reference/evaluators/list-evaluators",
+            "api-reference/evaluators/get-evaluator",
             "api-reference/evaluators/running-evaluators"
           ]
         },
@@ -85,6 +88,12 @@
             "api-reference/results/get-results",
             "api-reference/results/rerun-results",
             "api-reference/results/reevaluate-metrics"
+          ]
+        },
+        {
+          "group": "Phone Numbers",
+          "pages": [
+            "api-reference/phone-numbers/list-inbound-phone-numbers"
           ]
         },
         {
