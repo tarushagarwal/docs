@@ -45,6 +45,7 @@
           "group": "Calls",
           "pages": [
             "api-reference/calls/introduction",
+            "api-reference/calls/list-calls",
             "api-reference/calls/get-calls",
             "api-reference/calls/reevaluate-calls"
           ]
