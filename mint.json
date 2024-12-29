@@ -67,7 +67,8 @@
             "api-reference/metrics/list-metrics",
             "api-reference/metrics/get-metrics",
             "api-reference/metrics/update-metrics",
-            "api-reference/metrics/delete-metrics"
+            "api-reference/metrics/delete-metrics",
+            "api-reference/metrics/types-of-metrics"
           ]
         },
         {
