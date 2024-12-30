@@ -91,6 +91,12 @@
           ]
         },
         {
+          "group": "Personalities",
+          "pages": [
+            "api-reference/personalities/list-personalities"
+          ]
+        },
+        {
           "group": "Phone Numbers",
           "pages": [
             "api-reference/phone-numbers/list-inbound-phone-numbers"
