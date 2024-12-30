@@ -46,7 +46,8 @@
           "pages": [
             "api-reference/calls/introduction",
             "api-reference/calls/get-calls",
-            "api-reference/calls/reevaluate-calls"
+            "api-reference/calls/reevaluate-calls",
+            "api-reference/calls/delete-call"
           ]
         },
         {
