@@ -25,7 +25,10 @@ Include your API key in the request headers:
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `call_logs` | array\|string\|integer | Yes | Array of call log IDs to run OR `"all"` to run all OR number to run first N calls |
-| `agent_id` | integer | Yes | Required only when `call_logs` is `"all"` OR is number of first N calls |
+| `agent_id` | integer | Yes* | Unique identifier of the agent |
+| `assistant_id` | string | Yes* | The assistant ID associated with agent |
+
+\* Required only when `call_logs` is "all" OR is number of first N calls. Only either of `agent_id` or `assistant_id` is required
 
 
 ### Example Requests

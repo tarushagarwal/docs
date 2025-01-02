@@ -24,7 +24,10 @@ Include your API key in the request headers:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `agent_id` | integer | Yes | Filter evaluators by agent ID |
+| `agent_id` | integer | Yes* | Filter evaluators by agent ID |
+| `assistant_id` | string | Yes* | Filter evaluators by assistant ID associated with agent |
+
+\* Only either of `agent_id` or `assistant_id` is required
 
 ## Response Format
 

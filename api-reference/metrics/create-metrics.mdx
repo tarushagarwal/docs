@@ -30,10 +30,13 @@ Include your API key in the request headers:
 | `audio_enabled` | boolean | No | Whether audio analysis is enabled. Defaults to true |
 | `prompt_enabled` | boolean | No | Whether to use a custom prompt. Defaults to true |
 | `prompt` | string | No | Custom evaluation prompt template when prompt_enabled is true |
-| `agent` | integer | Yes | ID of the agent to evaluate |
+| `agent` | integer | Yes* | ID of the agent to evaluate |
+| `assistant_id` | string | Yes* | The assistant ID associated with agent to evaluate |
 | `eval_type` | string | Yes | Type of metric (binary_workflow_adherence, binary_qualitative, continuous_qualitative, numeric, enum) |
 | `enum_values` | array | No | List of possible values when eval_type is "enum" |
 | `display_order` | integer | No | Order for displaying the metric. Defaults to next available order |
+
+\* Only either of `agent` or `assistant_id` is required
 
 ### Example Request Body
 
