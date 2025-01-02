@@ -24,13 +24,16 @@ Include your API key in the request headers:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `agent_id` | integer | Yes | ID of the agent to generate evaluators for |
+| `agent_id` | integer | Yes* | ID of the agent to generate evaluators for |
+| `assistant_id` | string | Yes* | The assistant ID associated with agent to generate evaluators for |
 | `num_scenarios` | integer | Yes | Number of evaluators to generate |
 | `extra_instructions` | string | No | Additional instructions for scenario generation |
 | `information_fields` | object | No | Key-value pairs of information to include in scenarios |
 | `personalities` | array | No | Array of personality IDs to use |
 | `first_message` | string | No | Initial message for the conversation |
 | `inbound_phone_number` | integer | No | ID of the inbound phone number (See [inbound numbers](/api-reference/phone-numbers/list-inbound-phone-numbers)) |
+
+\* Only either of `agent_id` or `assistant_id` is required
 
 ### Example Request Body
 

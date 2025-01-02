@@ -28,7 +28,11 @@ Include your API key in the request headers:
 | `name` | string | Yes | Name of the evaluator |
 | `personality` | integer | Yes | ID of the personality to use |
 | `instructions` | string | Yes | Instructions for the evaluator |
-| `agent` | integer | Yes | ID of the agent |
+| `agent` | integer | Yes* | ID of the agent |
+| `assistant_id` | string | Yes* | The assistant ID associated with agent |
+
+\* Only either of `agent` or `assistant_id` is required
+
 
 ### Example Request Body
 
