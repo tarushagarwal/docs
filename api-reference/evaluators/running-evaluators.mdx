@@ -25,9 +25,10 @@ Include your API key in the request headers:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `scenarios` | array\|string\|integer | Yes | Array of evaluator IDs to run OR `"all"` to run all OR number to run first N evaluators |
 | `agent_id` | integer | Yes* | Unique identifier of the agent |
 | `assistant_id` | integer | Yes* | The assistant ID associated with agent |
+| `scenarios` | array\|string\|integer | Yes | Array of evaluator IDs to run OR `"all"` to run all OR number to run first N evaluators |
+| `freq` | integer | No | Number of times to run each scenario (default: 1) |
 
 \* Required only when `scenarios` is `"all"` OR is number of first N evaluators. Only either of `agent_id` or `assistant_id` is required
 
@@ -35,7 +36,8 @@ Include your API key in the request headers:
 Running evaluators using ids
 ```json
 {
-    "scenarios": [201, 187]
+    "scenarios": [201, 187],
+    "freq": 5
 }
 ```
 
@@ -43,7 +45,8 @@ Running all evaluators
 ```json
 {
     "agent_id": 1,
-    "scenarios": "all"
+    "scenarios": "all",
+    "freq": 5
 }
 ```
 
@@ -51,7 +54,8 @@ Running first N evaluators
 ```json
 {
     "agent_id": 1,
-    "scenarios": 10
+    "scenarios": 10,
+    "freq": 5
 }
 ```
 
@@ -90,7 +94,10 @@ A successful request returns details about created result.
 curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run_scenarios/ \
   -H "X-VOCERA-API-KEY: <your-api-key-here>" \
   -H "Content-Type: application/json" \
-  -d '{"scenarios": [<evaluator-id-1>, <evaluator-id-2>, ...]}'
+  -d '{
+      "scenarios": [<evaluator-id-1>, <evaluator-id-2>, ...],
+      "freq": 1
+    }'
 
 # Running all evaluators
 curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run_scenarios/ \
@@ -98,7 +105,8 @@ curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run
   -H "Content-Type: application/json" \
   -d '{
     "scenarios": "all",
-    "agent_id": <agent-id>
+    "agent_id": <agent-id>,
+    "freq": 1
   }'
 
 # Running first N evaluators
@@ -107,12 +115,13 @@ curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run
   -H "Content-Type: application/json" \
   -d '{
     "scenarios": <number-of-evaluators>,
-    "agent_id": <agent-id>
+    "agent_id": <agent-id>,
+    "freq": 1
   }'
 ```
 
 ```python Python
-def run_evaluators(api_key, evaluators, agent_id=None):
+def run_evaluators(api_key, evaluators, agent_id=None, freq=1):
     url = 'https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run_scenarios/'
 
     headers = {
@@ -121,7 +130,8 @@ def run_evaluators(api_key, evaluators, agent_id=None):
     }
 
     data = {
-        'scenarios': evaluators
+        'scenarios': evaluators,
+        'freq': freq
     }
 
     if isinstance(evaluators, (int, str)):
@@ -135,11 +145,12 @@ def run_evaluators(api_key, evaluators, agent_id=None):
 ```
 
 ```javascript JavaScript
-async function runEvaluators(apiKey, evaluators, agentId=null) {
+async function runEvaluators(apiKey, evaluators, agentId=null, freq=1) {
   const url = 'https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run_scenarios/';
 
   const data = {
-    scenarios: evaluators
+    scenarios: evaluators,
+    freq: freq
   }
 
   if (typeof evaluators === 'number' || typeof evaluators === 'string') {
@@ -186,9 +197,10 @@ Include your API key in the request headers:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `scenarios` | array\|string\|integer | Yes | Array of evaluator IDs to run OR `"all"` to run all OR number to run first N evaluators |
 | `agent_id` | integer | Yes* | Unique identifier of the agent |
 | `assistant_id` | string | Yes* | The assistant ID associated with agent |
+| `scenarios` | array\|string\|integer | Yes | Array of evaluator IDs to run OR `"all"` to run all OR number to run first N evaluators |
+| `freq` | integer | No | Number of times to run each scenario (default: 1) |
 
 \* Required only when `scenarios` is `"all"` OR is number of first N evaluators. Only either of `agent_id` or `assistant_id` is required
 
@@ -196,7 +208,8 @@ Include your API key in the request headers:
 Running evaluators using ids
 ```json
 {
-    "scenarios": [201, 187]
+    "scenarios": [201, 187],
+    "freq": 5
 }
 ```
 
@@ -204,7 +217,8 @@ Running all evaluators
 ```json
 {
     "agent_id": 1,
-    "scenarios": "all"
+    "scenarios": "all",
+    "freq": 5
 }
 ```
 
@@ -212,7 +226,8 @@ Running first N evaluators
 ```json
 {
     "agent_id": 1,
-    "scenarios": 10
+    "scenarios": 10,
+    "freq": 5
 }
 ```
 
@@ -318,7 +333,10 @@ Messages related to function execution, including both calls and results.
 curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run_scenarios_text/ \
   -H "X-VOCERA-API-KEY: <your-api-key-here>" \
   -H "Content-Type: application/json" \
-  -d '{"scenarios": [<evaluator-id-1>, <evaluator-id-2>, ...]}'
+  -d '{
+      "scenarios": [<evaluator-id-1>, <evaluator-id-2>, ...],
+      "freq": 1
+    }'
 
 # Running all evaluators
 curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run_scenarios_text/ \
@@ -326,7 +344,8 @@ curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run
   -H "Content-Type: application/json" \
   -d '{
     "scenarios": "all",
-    "agent_id": <agent-id>
+    "agent_id": <agent-id>,
+    "freq": 1
   }'
 
 # Running first N evaluators
@@ -335,12 +354,13 @@ curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run
   -H "Content-Type: application/json" \
   -d '{
     "scenarios": <number-of-evaluators>,
-    "agent_id": <agent-id>
+    "agent_id": <agent-id>,
+    "freq": 1
   }'
 ```
 
 ```python Python
-def run_evaluators(api_key, evaluators, agent_id=None):
+def run_evaluators(api_key, evaluators, agent_id=None, freq=1):
     url = 'https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run_scenarios_text/'
 
     headers = {
@@ -349,7 +369,8 @@ def run_evaluators(api_key, evaluators, agent_id=None):
     }
 
     data = {
-        'scenarios': evaluators
+        'scenarios': evaluators,
+        "freq": freq
     }
 
     if isinstance(evaluators, (int, str)):
@@ -363,11 +384,12 @@ def run_evaluators(api_key, evaluators, agent_id=None):
 ```
 
 ```javascript JavaScript
-async function runEvaluators(apiKey, evaluators, agentId=null) {
+async function runEvaluators(apiKey, evaluators, agentId=null, freq=1) {
   const url = 'https://new-prod.vocera.ai/test_framework/v1/scenarios-external/run_scenarios_text/';
 
   const data = {
-    scenarios: evaluators
+    scenarios: evaluators,
+    freq: freq
   }
 
   if (typeof evaluators === 'number' || typeof evaluators === 'string') {
