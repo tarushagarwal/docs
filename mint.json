@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Vocera",
   "logo": {
-    "dark": "/logo/logo-dark.svg",
+    "dark": "/logo/logo-light.png",
     "light": "/logo/logo-dark.svg"
   },
   "favicon": "/favicon.svg",
@@ -119,10 +119,17 @@
       ]
     },
     {
-       "group": "Embedding Documentation",
-          "pages": [
-            "api-reference/evaluators/llm-websocket-server-example"
-          ]
+      "group": "Embedding Documentation",
+         "pages": [
+           "embed/generate-token",
+           "embed/refreshing-expired-token",
+           {
+             "group": "Dashboard Embedding",
+             "pages": [
+                "embed/result-embedding"
+             ]
+           }
+         ]
     }
   ],
   "footerSocials": {
