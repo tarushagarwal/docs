@@ -117,6 +117,12 @@
           ]
         }
       ]
+    },
+    {
+       "group": "Embedding Documentation",
+          "pages": [
+            "api-reference/evaluators/llm-websocket-server-example"
+          ]
     }
   ],
   "footerSocials": {
