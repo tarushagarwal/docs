@@ -93,6 +93,12 @@
           ]
         },
         {
+          "group": "Runs",
+          "pages": [
+            "api-reference/runs/get-runs-bulk"
+          ]
+        },
+        {
           "group": "Personalities",
           "pages": [
             "api-reference/personalities/list-personalities"
