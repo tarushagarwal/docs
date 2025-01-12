@@ -39,6 +39,20 @@
       ]
     },
     {
+      "group": "Key Concepts",
+      "pages": [
+        {
+          "group": "Metrics",
+          "pages": [
+            "testing-voice-agents/metrics/overview",
+            "testing-voice-agents/metrics/custom-metrics",
+            "testing-voice-agents/metrics/pre-defined-metrics",
+            "testing-voice-agents/metrics/critical-workflow-metric"
+          ]
+        }
+      ]
+    },
+    {
       "group": "API Documentation",
       "pages": [
         {
