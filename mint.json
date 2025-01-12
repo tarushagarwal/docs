@@ -82,6 +82,7 @@
             "api-reference/metrics/list-metrics",
             "api-reference/metrics/get-metrics",
             "api-reference/metrics/update-metrics",
+            "api-reference/metrics/update-critical-workflow-metric",
             "api-reference/metrics/delete-metrics",
             "api-reference/metrics/types-of-metrics"
           ]
