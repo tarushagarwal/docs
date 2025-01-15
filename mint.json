@@ -42,6 +42,13 @@
       "group": "Key Concepts",
       "pages": [
         {
+          "group": "Testing Agents",
+          "pages": [
+            "key-concepts/testing-agents/retell-integration",
+            "key-concepts/testing-agents/vapi-integration"
+          ]
+        },
+        {
           "group": "Metrics",
           "pages": [
             "testing-voice-agents/metrics/overview",
