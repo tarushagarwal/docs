@@ -31,7 +31,12 @@
     }
   ],
   "navigation": [
-    
+    {
+      "group": "Get Started",
+      "pages": [
+        "introduction"
+      ]
+    },
     {
       "group": "Key Concepts",
       "pages": [
