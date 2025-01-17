@@ -31,13 +31,7 @@
     }
   ],
   "navigation": [
-    {
-      "group": "Get Started",
-      "pages": [
-        "introduction",
-        "run-observability"
-      ]
-    },
+    
     {
       "group": "Key Concepts",
       "pages": [
