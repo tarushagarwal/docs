@@ -45,7 +45,16 @@
           "group": "Testing Agents",
           "pages": [
             "key-concepts/testing-agents/retell-integration",
-            "key-concepts/testing-agents/vapi-integration"
+            "key-concepts/testing-agents/vapi-integration",
+            "key-concepts/testing-agents/custom-agent"
+          ]
+        },
+        {
+          "group": "Observability",
+          "pages": [
+            "key-concepts/observability/vapi",
+            "key-concepts/observability/retell",
+            "key-concepts/observability/custom"
           ]
         },
         {
