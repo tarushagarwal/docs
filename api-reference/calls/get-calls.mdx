@@ -58,6 +58,8 @@ The API returns detailed information about the specified call.
 | `score` | number | Score achieved for the metric (out of 5 for binary_workflow_adherence, binary_qualitative and continuous_qualitative) |
 | `enum` | string | Value selected from predefined options (only present for enum type metrics) |
 | `explanation` | array\|string | Detailed explanation of the score |
+| `vocera_defined_metric_code` | string | Predefined metric code if applicable |
+
 
 ## Example Response
 
@@ -78,7 +80,8 @@ The API returns detailed information about the specified call.
                 "explanation": [
                     "1. List key points from the transcript relevant to the metric:",
                     "   - The call was picked up successfully"
-                ]
+                ],
+                "vocera_defined_metric_code": "xyz"
             }
         ]
     },
