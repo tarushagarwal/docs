@@ -30,8 +30,10 @@ Include your API key in the request headers:
 | `name` | string | Yes | Name of the evaluator |
 | `personality` | integer | Yes | ID of the personality to use |
 | `instructions` | string | Yes | Instructions for the evaluator |
+| `agent` | integer | Yes* | ID of the agent |
+| `assistant_id` | string | Yes* | The assistant ID associated with agent |
 | `expected_outcome_prompt` | string | No | Prompt to evaluate expected outcome |
-| `metrics` | array | No | Array of metric IDs |
+| `metrics` | array\|integer\|string | No | Metrics to set to scenario, can be array of metric IDs or first N metrics or "all" to add all or "predefined" to add all predefined |
 
 \* Only either of `agent` or `assistant_id` is required
 

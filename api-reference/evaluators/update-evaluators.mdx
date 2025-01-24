@@ -35,7 +35,7 @@ Include your API key in the request headers:
 | `agent` | integer | No | ID of the agent |
 | `personality` | integer | No | ID of the personality to use |
 | `instructions` | string | No | Instructions for the evaluator |
-| `metrics` | array | No | Array of metric IDs |
+| `metrics` | array\|integer\|string | No | Metrics to set to scenario, can be array of metric IDs or first N metrics or "all" to add all or "predefined" to add all predefined |
 | `tags` | array | No | Array of tag strings |
 | `inbound_phone_number` | integer | No | ID of inbound phone number |
 | `first_message` | string | No | Initial message for the conversation |
