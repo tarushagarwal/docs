@@ -25,6 +25,8 @@ Include your API key in the request headers:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
+| `agent` | integer | Yes* | ID of the agent |
+| `assistant_id` | string | Yes* | The assistant ID associated with agent |
 | `name` | string | Yes | Name of the evaluator |
 | `personality` | integer | Yes | ID of the personality to use |
 | `instructions` | string | Yes | Instructions for the evaluator |
@@ -40,10 +42,12 @@ Include your API key in the request headers:
 
 ```json
 {
+  "agent": 4,
   "name": "Demo evaluator",
   "personality": 2,
   "instructions": "Some instructions",
-  "agent": 4
+  "expected_outcome_prompt": "Issue was resolved with a refund or replacement",
+  "metrics": [1,2]
 }
 ```
 
@@ -63,6 +67,8 @@ A successful request returns the created evaluator details.
 | `retell_agent_id` | string | UUID of the retell agent |
 | `runs` | array | List of evaluator runs (empty for new evaluators) |
 | `instructions` | string | Evaluator instructions |
+| `expected_outcome_prompt` | string | Prompt to evaluate expected outcome |
+| `metrics` | array | Array of metric IDs |
 
 ### Example Response
 
@@ -75,7 +81,9 @@ A successful request returns the created evaluator details.
     "personality_name": "Frustrated Dutch, English",
     "retell_agent_id": "edc58747-b69d-47a5-be64-a1d6309c6c65",
     "runs": [],
-    "instructions": "Some instructions"
+    "instructions": "Some instructions",
+    "expected_outcome_prompt": "Issue was resolved with a refund or replacement",
+    "metrics": [1,2]
 }
 ```
 
@@ -91,14 +99,16 @@ curl -X POST https://new-prod.vocera.ai/test_framework/v1/scenarios-external/ \
     "name": "<evaluator-name>",
     "agent": <agent-id>,
     "personality": <personality-id>,
-    "instructions": "<evaluator-instructions>"
+    "instructions": "<evaluator-instructions>",
+    "metrics": [<metric-id>, <metric-ids>],
+    "expected_outcome_prompt": "<expected-outcome-prompt>"
   }'
 ```
 
 ```python Python
 import requests
 
-def create_evaluator(api_key, name, agent_id, personality_id, instructions):
+def create_evaluator(api_key, **kwargs):
     url = 'https://new-prod.vocera.ai/test_framework/v1/scenarios-external/'
     
     headers = {
@@ -106,27 +116,16 @@ def create_evaluator(api_key, name, agent_id, personality_id, instructions):
         'Content-Type': 'application/json'
     }
     
-    data = {
-        'name': name,
-        'agent': agent_id,
-        'personality': personality_id,
-        'instructions': instructions,
-    }
+    # Only include non-None values in the request
+    data = {k: v for k, v in kwargs.items() if v is not None}
 
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 ```
 
 ```javascript JavaScript
-async function createEvaluator(apiKey, name, personalityId, instructions, agentId) {
+async function createEvaluator(apiKey, updateData) {
   const url = 'https://new-prod.vocera.ai/test_framework/v1/scenarios-external/';
-  
-  const data = {
-    name,
-    personality: personalityId,
-    instructions,
-    agent: agentId,
-  };
 
   const response = await fetch(url, {
     method: 'POST',
@@ -134,7 +133,7 @@ async function createEvaluator(apiKey, name, personalityId, instructions, agentI
       'X-VOCERA-API-KEY': apiKey,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(updateData)
   });
 
   return await response.json();

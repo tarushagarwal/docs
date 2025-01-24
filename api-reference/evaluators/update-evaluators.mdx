@@ -39,6 +39,7 @@ Include your API key in the request headers:
 | `tags` | array | No | Array of tag strings |
 | `inbound_phone_number` | integer | No | ID of inbound phone number |
 | `first_message` | string | No | Initial message for the conversation |
+| `expected_outcome_prompt` | string | No | Prompt to evaluate expected outcome |
 
 ### Example Request Body
 
@@ -51,7 +52,8 @@ Include your API key in the request headers:
   "metrics": [789, 790, 791],
   "tags": ["angry_customer", "product_complaint", "high_priority"],
   "inbound_phone_number": 555,
-  "first_message": "I need to speak with someone about this broken laptop I received!"
+  "first_message": "I need to speak with someone about this broken laptop I received!",
+  "expected_outcome_prompt": "Issue was resolved with a refund or replacement"
 }
 ```
 
@@ -77,6 +79,7 @@ The API returns detailed information about the updated evaluator.
 | `inbound_phone_number` | integer\|null | ID of the inbound phone number (See [inbound numbers](/api-reference/phone-numbers/list-inbound-phone-numbers))|
 | `inbound_phone_number_data` | object\|null | Details about the inbound phone number (see below) |
 | `instructions` | string | Evaluator instructions |
+| `expected_outcome_prompt` | string | Prompt to evaluate expected outcome |
 
 ### Inbound Phone Number Data Fields
 
@@ -111,7 +114,8 @@ The API returns detailed information about the updated evaluator.
         "number": "+1234567890",
         "phone_number_id": "123"
     },
-    "instructions": "Act as an angry customer who received a defective product. Be persistent but not abusive."
+    "instructions": "Act as an angry customer who received a defective product. Be persistent but not abusive.",
+    "expected_outcome_prompt": "Issue was resolved with a refund or replacement"
 }
 ```
 
@@ -129,7 +133,8 @@ curl -X PATCH https://new-prod.vocera.ai/test_framework/v1/scenarios-external/{s
     "personality": 456,
     "instructions": "Act as an angry customer who received a defective product. Be persistent but not abusive.",
     "metrics": [789, 790, 791],
-    "tags": ["angry_customer", "product_complaint", "high_priority"]
+    "tags": ["angry_customer", "product_complaint", "high_priority"],
+    "expected_outcome_prompt": "Issue was resolved with a refund or replacement"
   }'
 ```
 
