@@ -1499,10 +1499,111 @@
           "observability"
         ],
         "operationId": "observability_v1_observe_create",
+        "description": "Submit a call recording and transcript for observation and analysis",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "call_id",
+                  "transcript_json"
+                ],
+                "properties": {
+                  "call_id": {
+                    "type": "string",
+                    "description": "Unique identifier for the call"
+                  },
+                  "agent": {
+                    "type": "string",
+                    "description": "The agent ID as shown on your dashboard. Either agent or assistant_id must be provided"
+                  },
+                  "assistant_id": {
+                    "type": "string",
+                    "description": "The assistant ID associated with agent. Either agent or assistant_id must be provided"
+                  },
+                  "voice_recording": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Audio file of the call recording. Either voice_recording or voice_recording_url must be provided"
+                  },
+                  "voice_recording_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL to the call recording audio file. Either voice_recording or voice_recording_url must be provided"
+                  },
+                  "call_ended_reason": {
+                    "type": "string",
+                    "description": "Optional reason for call termination"
+                  },
+                  "customer_number": {
+                    "type": "string",
+                    "description": "Optional phone number of the customer"
+                  },
+                  "transcript_json": {
+                    "type": "array",
+                    "description": "JSON object containing the transcript of the call. Can be in Vocera, Vapi, Retell or Deepgram format",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
-            "description": "",
-            "content": {}
+            "description": "Call observation submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - missing or invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -2874,35 +2975,6 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "test_framework"
-        ],
-        "operationId": "test_framework_phone_number_create",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PhoneNumber"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PhoneNumber"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "data"
       }
     },
     "/test_framework/phone_number/inbound/": {
@@ -5725,123 +5797,70 @@
         "tags": [
           "test_framework"
         ],
-        "operationId": "test_framework_v1_results-external_list",
+        "operationId": "test_framework_results_external_list",
+        "description": "Get a list of test results",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "page",
             "in": "query",
-            "description": "A page number within the paginated result set.",
+            "description": "Page number for pagination",
+            "required": false,
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "default": 1
             }
           },
           {
             "name": "page_size",
             "in": "query",
-            "description": "Number of results to return per page.",
+            "description": "Number of items per page",
+            "required": false,
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "default": 10
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "List of test results retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "required": [
-                    "count",
-                    "results"
-                  ],
                   "type": "object",
                   "properties": {
                     "count": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Total number of results"
                     },
                     "next": {
                       "type": "string",
-                      "format": "uri",
-                      "nullable": true
+                      "nullable": true,
+                      "description": "URL to next page of results"
                     },
                     "previous": {
                       "type": "string",
-                      "format": "uri",
-                      "nullable": true
+                      "nullable": true,
+                      "description": "URL to previous page of results"
                     },
                     "results": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/ResultExternal"
+                        "$ref": "#/components/schemas/TestResult"
                       }
                     }
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/test_framework/v1/results-external/result_ids/": {
-      "get": {
-        "tags": [
-          "test_framework"
-        ],
-        "operationId": "test_framework_v1_results-external_result_ids",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "A page number within the paginated result set.",
-            "schema": {
-              "type": "integer"
-            }
           },
-          {
-            "name": "page_size",
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "count",
-                    "results"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "count": {
-                      "type": "integer"
-                    },
-                    "next": {
-                      "type": "string",
-                      "format": "uri",
-                      "nullable": true
-                    },
-                    "previous": {
-                      "type": "string",
-                      "format": "uri",
-                      "nullable": true
-                    },
-                    "results": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ResultExternal"
-                      }
-                    }
-                  }
-                }
-              }
-            }
+          "401": {
+            "description": "Unauthorized - invalid API key"
           }
         }
       }
@@ -5851,12 +5870,19 @@
         "tags": [
           "test_framework"
         ],
-        "operationId": "test_framework_v1_results-external_read",
+        "operationId": "test_framework_results_external_retrieve",
+        "description": "Get details of a specific test result",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "ID of the test result to retrieve",
             "schema": {
               "type": "string"
             }
@@ -5864,14 +5890,20 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Test result details retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultDetailExternal"
+                  "$ref": "#/components/schemas/TestResult"
                 }
               }
             }
+          },
+          "404": {
+            "description": "Test result not found"
+          },
+          "401": {
+            "description": "Unauthorized - invalid API key"
           }
         }
       }
@@ -5977,60 +6009,70 @@
         "tags": [
           "test_framework"
         ],
-        "operationId": "test_framework_v1_scenarios-external_list",
+        "operationId": "test_framework_scenarios_external_list",
+        "description": "Get a list of test scenarios",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "page",
             "in": "query",
-            "description": "A page number within the paginated result set.",
+            "description": "Page number for pagination",
+            "required": false,
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "default": 1
             }
           },
           {
             "name": "page_size",
             "in": "query",
-            "description": "Number of results to return per page.",
+            "description": "Number of items per page",
+            "required": false,
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "default": 10
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "List of test scenarios retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "required": [
-                    "count",
-                    "results"
-                  ],
                   "type": "object",
                   "properties": {
                     "count": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Total number of scenarios"
                     },
                     "next": {
                       "type": "string",
-                      "format": "uri",
-                      "nullable": true
+                      "nullable": true,
+                      "description": "URL to next page of scenarios"
                     },
                     "previous": {
                       "type": "string",
-                      "format": "uri",
-                      "nullable": true
+                      "nullable": true,
+                      "description": "URL to previous page of scenarios"
                     },
                     "results": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/ScenarioExternal"
+                        "$ref": "#/components/schemas/TestScenario"
                       }
                     }
                   }
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized - invalid API key"
           }
         }
       },
@@ -6038,30 +6080,41 @@
         "tags": [
           "test_framework"
         ],
-        "operationId": "test_framework_v1_scenarios-external_create",
+        "operationId": "test_framework_scenarios_external_create",
+        "description": "Create a new test scenario",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Scenario"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Scenario"
-                }
+                "$ref": "#/components/schemas/TestScenario"
               }
             }
           }
         },
-        "x-codegen-request-body-name": "data"
+        "responses": {
+          "201": {
+            "description": "Test scenario created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestScenario"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "401": {
+            "description": "Unauthorized - invalid API key"
+          }
+        }
       }
     },
     "/test_framework/v1/scenarios-external/generate/": {
