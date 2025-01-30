@@ -5,7 +5,7 @@
     "dark": "/logo/logo-light.png",
     "light": "/logo/logo-dark.svg"
   },
-  "favicon": "/logo/logo-dark.svg",
+  "favicon": "/logo/favicon.svg",
   "colors": {
     "primary": "#0D9373",
     "dark": "#0D9373",
@@ -24,17 +24,24 @@
     "name": "Dashboard",
     "url": "https://dashboard.vocera.ai"
   },
+  "primaryTab": {
+    "name": "Documentation"
+  },
   "tabs": [
     {
-      "name": "Getting Started",
-      "url": "getting-started"
+      "name": "Documentation",
+      "url": "documentation"
+    },
+    {
+      "name": "API Reference",
+      "url": "api-reference"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
       "pages": [
-        "introduction"
+        "documentation/introduction"
       ]
     },
     {
@@ -43,26 +50,108 @@
         {
           "group": "Testing Agents",
           "pages": [
-            "key-concepts/testing-agents/retell-integration",
-            "key-concepts/testing-agents/vapi-integration",
-            "key-concepts/testing-agents/custom-agent"
+            "documentation/key-concepts/testing-agents/retell-integration",
+            "documentation/key-concepts/testing-agents/vapi-integration",
+            "documentation/key-concepts/testing-agents/custom-agent"
           ]
         },
         {
           "group": "Observability",
           "pages": [
-            "key-concepts/observability/vapi",
-            "key-concepts/observability/retell",
-            "key-concepts/observability/custom"
+            "documentation/key-concepts/observability/vapi",
+            "documentation/key-concepts/observability/retell",
+            "documentation/key-concepts/observability/custom"
           ]
         },
         {
           "group": "Metrics",
           "pages": [
-            "testing-voice-agents/metrics/overview",
-            "testing-voice-agents/metrics/custom-metrics",
-            "testing-voice-agents/metrics/pre-defined-metrics",
-            "testing-voice-agents/metrics/critical-workflow-metric"
+            "documentation/testing-voice-agents/metrics/overview",
+            "documentation/testing-voice-agents/metrics/custom-metrics",
+            "documentation/testing-voice-agents/metrics/pre-defined-metrics",
+            "documentation/testing-voice-agents/metrics/critical-workflow-metric"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        {
+          "group": "Calls",
+          "pages": [
+            "api-reference/observability/post-observabilityv1observe",
+            "api-reference/observability/get-observabilityv1call-logs-external-",
+            "api-reference/observability/post-observabilityv1call-logs-externalrerun_evaluation",
+            "api-reference/observability/delete-observabilityv1call-logs-external-"
+          ]
+        },
+        {
+          "group": "Agents",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1aiagents-external",
+            "api-reference/test_framework/post-test_frameworkv1aiagents-external",
+            "api-reference/test_framework/patch-test_frameworkv1aiagents-external-",
+            "api-reference/test_framework/delete-test_frameworkv1aiagents-external-",
+            "api-reference/test_framework/get-test_frameworkv1aiagents-external-",
+            "api-reference/test_framework/put-test_frameworkv1aiagents-external-"
+          ]
+        },
+        {
+          "group": "Metrics",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1metrics-external",
+            "api-reference/test_framework/post-test_frameworkv1metrics-external",
+            "api-reference/test_framework/post-test_frameworkv1metrics-externalgenerate_metrics",
+            "api-reference/test_framework/post-test_frameworkv1metrics-externalbulk_create",
+            "api-reference/test_framework/get-test_frameworkv1metrics-external-",
+            "api-reference/test_framework/patch-test_frameworkv1metrics-external-",
+            "api-reference/test_framework/patch-test_frameworkv1critical-metric-scenarios-external-",
+            "api-reference/test_framework/delete-test_frameworkv1metrics-external-"
+          ]
+        },
+        {
+          "group": "Evaluators",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1scenarios-external",
+            "api-reference/test_framework/post-test_frameworkv1scenarios-external",
+            "api-reference/test_framework/get-test_frameworkv1scenarios-external-",
+            "api-reference/test_framework/delete-test_frameworkv1scenarios-external-",
+            "api-reference/test_framework/patch-test_frameworkv1scenarios-external-",
+            "api-reference/test_framework/post-test_frameworkv1scenarios-externalrun_scenarios"
+          ]
+        },
+        {
+          "group": "Results",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1results-external",
+            "api-reference/test_framework/get-test_frameworkv1results-external-",
+            "api-reference/test_framework/post-test_frameworkv1results-external-evaluate_metrics",
+            "api-reference/test_framework/post-test_frameworkv1results-external-rerun"
+          ]
+        },
+        {
+          "group": "Runs",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1runs-externalbulk"
+          ]
+        },
+        {
+          "group": "Personalities",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1personalities-external"
+          ]
+        },
+        {
+          "group": "Predefined Metrics",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1predefined-metrics-external"
+          ]
+        },
+        {
+          "group": "Phone Numbers",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1phone-numbers-externalinbound"
           ]
         }
       ]
@@ -73,99 +162,99 @@
         {
           "group": "Calls",
           "pages": [
-            "api-reference/calls/introduction",
-            "api-reference/calls/get-calls",
-            "api-reference/calls/reevaluate-calls",
-            "api-reference/calls/delete-call"
+            "documentation/api/calls/introduction",
+            "documentation/api/calls/get-calls",
+            "documentation/api/calls/reevaluate-calls",
+            "documentation/api/calls/delete-call"
           ]
         },
         {
           "group": "Agents",
           "pages": [
-            "api-reference/agents/create-agents",
-            "api-reference/agents/list-agents",
-            "api-reference/agents/update-agents",
-            "api-reference/agents/delete-agents"
+            "documentation/api/agents/create-agents",
+            "documentation/api/agents/list-agents",
+            "documentation/api/agents/update-agents",
+            "documentation/api/agents/delete-agents"
           ]
         },
         {
           "group": "Metrics",
           "pages": [
-            "api-reference/metrics/create-metrics",
-            "api-reference/metrics/generate-metrics",
-            "api-reference/metrics/create-bulk-metrics",
-            "api-reference/metrics/list-metrics",
-            "api-reference/metrics/get-metrics",
-            "api-reference/metrics/update-metrics",
-            "api-reference/metrics/update-critical-workflow-metric",
-            "api-reference/metrics/delete-metrics",
-            "api-reference/metrics/types-of-metrics"
+            "documentation/api/metrics/create-metrics",
+            "documentation/api/metrics/generate-metrics",
+            "documentation/api/metrics/create-bulk-metrics",
+            "documentation/api/metrics/list-metrics",
+            "documentation/api/metrics/get-metrics",
+            "documentation/api/metrics/update-metrics",
+            "documentation/api/metrics/update-critical-workflow-metric",
+            "documentation/api/metrics/delete-metrics",
+            "documentation/api/metrics/types-of-metrics"
           ]
         },
         {
           "group": "Evaluators",
           "pages": [
-            "api-reference/evaluators/create-evaluators",
-            "api-reference/evaluators/generate-evaluators",
-            "api-reference/evaluators/update-evaluators",
-            "api-reference/evaluators/list-evaluators",
-            "api-reference/evaluators/get-evaluator",
-            "api-reference/evaluators/running-evaluators"
+            "documentation/api/evaluators/create-evaluators",
+            "documentation/api/evaluators/generate-evaluators",
+            "documentation/api/evaluators/update-evaluators",
+            "documentation/api/evaluators/list-evaluators",
+            "documentation/api/evaluators/get-evaluator",
+            "documentation/api/evaluators/running-evaluators"
           ]
         },
         {
           "group": "Results",
           "pages": [
-            "api-reference/results/list-results",
-            "api-reference/results/get-results",
-            "api-reference/results/rerun-results",
-            "api-reference/results/reevaluate-metrics"
+            "documentation/api/results/list-results",
+            "documentation/api/results/get-results",
+            "documentation/api/results/rerun-results",
+            "documentation/api/results/reevaluate-metrics"
           ]
         },
         {
           "group": "Runs",
           "pages": [
-            "api-reference/runs/get-runs-bulk"
+            "documentation/api/runs/get-runs-bulk"
           ]
         },
         {
           "group": "Personalities",
           "pages": [
-            "api-reference/personalities/list-personalities"
+            "documentation/api/personalities/list-personalities"
           ]
         },
         {
           "group": "Predefined Metrics",
           "pages": [
-            "api-reference/predefined-metrics/list-predefined-metrics"
+            "documentation/api/predefined-metrics/list-predefined-metrics"
           ]
         },
         {
           "group": "Phone Numbers",
           "pages": [
-            "api-reference/phone-numbers/list-inbound-phone-numbers"
+            "documentation/api/phone-numbers/list-inbound-phone-numbers"
           ]
         },
         {
           "group": "LLM Websocket",
           "pages": [
-            "api-reference/evaluators/llm-websocket-server-example"
+            "documentation/api/evaluators/llm-websocket-server-example"
           ]
         }
       ]
     },
     {
       "group": "Embedding Documentation",
-         "pages": [
-           "embed/generate-token",
-           "embed/refreshing-expired-token",
-           {
-             "group": "Dashboard Embedding",
-             "pages": [
-                "embed/result-embedding"
-             ]
-           }
-         ]
+      "pages": [
+        "documentation/embed/generate-token",
+        "documentation/embed/refreshing-expired-token",
+        {
+          "group": "Dashboard Embedding",
+          "pages": [
+            "documentation/embed/result-embedding"
+          ]
+        }
+      ]
     }
   ],
   "footerSocials": {
