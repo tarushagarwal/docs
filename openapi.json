@@ -12,7 +12,7 @@
   ],
   "security": [
     {
-      "Basic": []
+      "api_key": []
     }
   ],
   "paths": {
@@ -250,12 +250,74 @@
         "x-codegen-request-body-name": "data"
       }
     },
+    "/observability/call_log/create_scenarios/": {
+      "post": {
+        "tags": [
+          "observability"
+        ],
+        "operationId": "observability_call_log_create_scenarios",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CallLogDetail"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallLogDetail"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
     "/observability/call_log/delete_call_logs/": {
       "post": {
         "tags": [
           "observability"
         ],
         "operationId": "observability_call_log_delete_call_logs",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CallLogDetail"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallLogDetail"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/observability/call_log/evaluate_metrics/": {
+      "post": {
+        "tags": [
+          "observability"
+        ],
+        "operationId": "observability_call_log_evaluate_metrics",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1717,6 +1779,21 @@
         "x-codegen-request-body-name": "data"
       }
     },
+    "/slack/interact/": {
+      "post": {
+        "tags": [
+          "slack"
+        ],
+        "description": "Handle Slack interactive component callbacks",
+        "operationId": "slack_interact_create",
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
     "/slack/oauth/": {
       "post": {
         "tags": [
@@ -2361,6 +2438,37 @@
           "test_framework"
         ],
         "operationId": "test_framework_metrics_bulk_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricDetail"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricDetail"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/test_framework/metrics/delete_metrics/": {
+      "post": {
+        "tags": [
+          "test_framework"
+        ],
+        "operationId": "test_framework_metrics_delete_metrics",
         "requestBody": {
           "content": {
             "application/json": {
@@ -6049,6 +6157,37 @@
         "x-codegen-request-body-name": "data"
       }
     },
+    "/test_framework/v1/scenarios-external/run_scenarios_with_websockets/": {
+      "post": {
+        "tags": [
+          "test_framework"
+        ],
+        "operationId": "test_framework_v1_scenarios-external_run_scenarios_with_websockets",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Scenario"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scenario"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
     "/test_framework/v1/scenarios-external/{id}/": {
       "get": {
         "tags": [
@@ -6560,6 +6699,29 @@
           }
         },
         "x-codegen-request-body-name": "data"
+      }
+    },
+    "/user/organizations/overview/critical-categories/": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "user_organizations_overview_overview_critical_categories",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Organization"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/user/organizations/{id}/": {
@@ -7858,12 +8020,12 @@
           },
           "dropoff_point": {
             "title": "Dropoff point",
-            "maxLength": 100,
+            "maxLength": 1000,
             "type": "string"
           },
           "dropoff_reason": {
             "title": "Dropoff reason",
-            "maxLength": 100,
+            "maxLength": 1000,
             "type": "string"
           },
           "customer_number": {
@@ -8232,6 +8394,11 @@
             "title": "Evaluation trigger prompt",
             "type": "string"
           },
+          "vocera_defined_metric_code": {
+            "title": "Vocera defined metric code",
+            "maxLength": 255,
+            "type": "string"
+          },
           "scenarios": {
             "uniqueItems": true,
             "type": "array",
@@ -8329,6 +8496,11 @@
             "title": "Evaluation trigger prompt",
             "type": "string"
           },
+          "vocera_defined_metric_code": {
+            "title": "Vocera defined metric code",
+            "maxLength": 255,
+            "type": "string"
+          },
           "display_order": {
             "title": "Display order",
             "maximum": 2147483647,
@@ -8417,6 +8589,11 @@
           },
           "evaluation_trigger_prompt": {
             "title": "Evaluation trigger prompt",
+            "type": "string"
+          },
+          "vocera_defined_metric_code": {
+            "title": "Vocera defined metric code",
+            "maxLength": 255,
             "type": "string"
           },
           "display_order": {
@@ -8581,6 +8758,12 @@
             "type": "integer",
             "readOnly": true
           },
+          "name": {
+            "title": "Name",
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
           "agent": {
             "title": "Agent",
             "type": "integer"
@@ -8641,6 +8824,11 @@
             "type": "string",
             "readOnly": true
           },
+          "run_numbers": {
+            "title": "Run numbers",
+            "type": "string",
+            "readOnly": true
+          },
           "created_at": {
             "title": "Created at",
             "type": "string",
@@ -8665,6 +8853,12 @@
             "type": "integer",
             "readOnly": true
           },
+          "name": {
+            "title": "Name",
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
           "agent": {
             "title": "Agent",
             "type": "integer"
@@ -8672,6 +8866,7 @@
           "status": {
             "title": "Status",
             "type": "string",
+            "readOnly": true,
             "enum": [
               "running",
               "completed",
@@ -8694,13 +8889,15 @@
           },
           "success_rate": {
             "title": "Success rate",
-            "type": "number"
+            "type": "number",
+            "readOnly": true
           },
           "overall_evaluation": {
             "title": "Overall evaluation",
             "type": "object",
             "properties": {},
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "run_as_text": {
             "title": "Run as text",
@@ -9214,13 +9411,41 @@
             "title": "Language",
             "type": "string",
             "enum": [
-              "en",
-              "de",
-              "es",
-              "hi",
               "ar",
+              "bg",
+              "ca",
+              "zh",
+              "cs",
+              "da",
+              "nl",
+              "en",
+              "et",
+              "fi",
               "fr",
-              "ja"
+              "de",
+              "el",
+              "hi",
+              "hu",
+              "id",
+              "it",
+              "ja",
+              "ko",
+              "lv",
+              "lt",
+              "ms",
+              "no",
+              "pl",
+              "pt",
+              "ro",
+              "ru",
+              "sk",
+              "es",
+              "sv",
+              "ta",
+              "th",
+              "tr",
+              "uk",
+              "vi"
             ]
           },
           "assistant_id": {
@@ -9359,13 +9584,41 @@
             "title": "Language",
             "type": "string",
             "enum": [
-              "en",
-              "de",
-              "es",
-              "hi",
               "ar",
+              "bg",
+              "ca",
+              "zh",
+              "cs",
+              "da",
+              "nl",
+              "en",
+              "et",
+              "fi",
               "fr",
-              "ja"
+              "de",
+              "el",
+              "hi",
+              "hu",
+              "id",
+              "it",
+              "ja",
+              "ko",
+              "lv",
+              "lt",
+              "ms",
+              "no",
+              "pl",
+              "pt",
+              "ro",
+              "ru",
+              "sk",
+              "es",
+              "sv",
+              "ta",
+              "th",
+              "tr",
+              "uk",
+              "vi"
             ]
           }
         }
@@ -9774,6 +10027,10 @@
           },
           "evaluate_relevant_metrics_enabled": {
             "title": "Evaluate relevant metrics enabled",
+            "type": "boolean"
+          },
+          "end_call_enabled": {
+            "title": "End call enabled",
             "type": "boolean"
           },
           "vapi_api_key": {
@@ -10292,9 +10549,10 @@
       }
     },
     "securitySchemes": {
-      "Basic": {
-        "type": "http",
-        "scheme": "basic"
+      "api_key": {
+        "type": "apiKey",
+        "name": "X-VOCERA-API-KEY",
+        "in": "header"
       }
     }
   },

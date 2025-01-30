@@ -14,7 +14,6 @@
       "to": "#07C983"
     }
   },
-
   "topbarLinks": [
     {
       "name": "Support",
@@ -32,11 +31,10 @@
     {
       "name": "Documentation",
       "url": "documentation"
-      },
+    },
     {
       "name": "API Reference",
       "url": "api-reference"
-   
     }
   ],
   "navigation": [
@@ -79,277 +77,84 @@
     {
       "group": "API Reference",
       "pages": [
-        
-        
-          {
-            "group": "Observability",
-            "pages": [
-              "api-reference/observability/get-observabilitycall_log",
-              "api-reference/observability/post-observabilitycall_log",
-              "api-reference/observability/post-observabilitycall_logdelete_call_logs",
-              "api-reference/observability/get-observabilitycall_logfilters",
-              "api-reference/observability/get-observabilitycall_logfilters_call_id",  
-              "api-reference/observability/get-observabilitycall_logfilters_customer_number",
-              "api-reference/observability/post-observabilitycall_logrerun_evaluation",
-              "api-reference/observability/get-observabilitycall_log-",
-              "api-reference/observability/put-observabilitycall_log-",
-              "api-reference/observability/delete-observabilitycall_log-",
-              "api-reference/observability/patch-observabilitycall_log-",
-              "api-reference/observability/post-observabilitycall_log-create_scenario",
-              "api-reference/observability/post-observabilitycall_log-mark_critical_scenario_wrong",
-              "api-reference/observability/get-observabilityoverall_evaluation",       
-              "api-reference/observability/post-observabilityoverall_evaluation",      
-              "api-reference/observability/get-observabilityoverall_evaluationgenerate_overall_summary",
-              "api-reference/observability/get-observabilityoverall_evaluationrealtime",
-              "api-reference/observability/get-observabilityoverall_evaluation-",      
-              "api-reference/observability/put-observabilityoverall_evaluation-",      
-              "api-reference/observability/delete-observabilityoverall_evaluation-",   
-              "api-reference/observability/patch-observabilityoverall_evaluation-",    
-              "api-reference/observability/get-observabilityv1call-logs-external",     
-              "api-reference/observability/post-observabilityv1call-logs-externalrerun_evaluation",
-              "api-reference/observability/get-observabilityv1call-logs-external-",    
-              "api-reference/observability/delete-observabilityv1call-logs-external-", 
-              "api-reference/observability/post-observabilityv1observe",
-              "api-reference/observability/post-observabilityv1retellobserve",
-              "api-reference/observability/post-observabilityv1vapiobserve"
-            ]
-          },
-          {
-            "group": "Schedules",
-            "pages": [
-              "api-reference/schedules/get-schedulescron-jobs",
-              "api-reference/schedules/post-schedulescron-jobs",
-              "api-reference/schedules/post-schedulescron-jobsdisable_alerts",
-              "api-reference/schedules/post-schedulescron-jobsenable_alerts",
-              "api-reference/schedules/get-schedulescron-jobs-",
-              "api-reference/schedules/put-schedulescron-jobs-",
-              "api-reference/schedules/delete-schedulescron-jobs-",
-              "api-reference/schedules/patch-schedulescron-jobs-"
-            ]
-          },
-          {
-            "group": "Slack Integration",
-            "pages": [
-              "api-reference/slack/post-slackoauth",
-              "api-reference/slack/get-slackslack-workspaces",
-              "api-reference/slack/post-slackslack-workspaces",
-              "api-reference/slack/get-slackslack-workspaces-",
-              "api-reference/slack/put-slackslack-workspaces-",
-              "api-reference/slack/delete-slackslack-workspaces-",
-              "api-reference/slack/patch-slackslack-workspaces-"
-            ]
-          },
-          {
-            "group": "Test Framework",
-            "pages": [
-              "api-reference/test_framework/get-test_frameworkaiagents",
-              "api-reference/test_framework/post-test_frameworkaiagents",
-              "api-reference/test_framework/get-test_frameworkaiagents-",
-              "api-reference/test_framework/put-test_frameworkaiagents-",
-              "api-reference/test_framework/delete-test_frameworkaiagents-",
-              "api-reference/test_framework/patch-test_frameworkaiagents-",
-              "api-reference/test_framework/post-test_frameworkaiagents-copy",
-              "api-reference/test_framework/post-test_frameworkaiagents-disable_personalities",
-              "api-reference/test_framework/post-test_frameworkaiagents-enable_personalities",
-              "api-reference/test_framework/get-test_frameworkaiagents-personalities", 
-              "api-reference/test_framework/get-test_frameworkbilling",
-              "api-reference/test_framework/get-test_frameworkbillingruns",
-              "api-reference/test_framework/put-test_frameworkcritical-scenarios-",    
-              "api-reference/test_framework/patch-test_frameworkcritical-scenarios-",  
-              "api-reference/test_framework/post-test_frameworkgenerate_scenarios",    
-              "api-reference/test_framework/post-test_frameworkmetric-reviewsdelete_reviews",
-              "api-reference/test_framework/delete-test_frameworkmetric-reviews-",     
-              "api-reference/test_framework/get-test_frameworkmetrics",
-              "api-reference/test_framework/post-test_frameworkmetrics",
-              "api-reference/test_framework/post-test_frameworkmetricsbulk_create",    
-              "api-reference/test_framework/post-test_frameworkmetricsgenerate_metrics",
-              "api-reference/test_framework/get-test_frameworkmetrics-",
-              "api-reference/test_framework/put-test_frameworkmetrics-",
-              "api-reference/test_framework/delete-test_frameworkmetrics-",
-              "api-reference/test_framework/patch-test_frameworkmetrics-",
-              "api-reference/test_framework/post-test_frameworkmetrics-add_to_predefined_metrics",
-              "api-reference/test_framework/post-test_frameworkmetrics-run_reviews",   
-              "api-reference/test_framework/get-test_frameworkpersonalities",
-              "api-reference/test_framework/post-test_frameworkpersonalities",
-              "api-reference/test_framework/get-test_frameworkpersonalities-",
-              "api-reference/test_framework/put-test_frameworkpersonalities-",
-              "api-reference/test_framework/delete-test_frameworkpersonalities-",      
-              "api-reference/test_framework/patch-test_frameworkpersonalities-",       
-              "api-reference/test_framework/get-test_frameworkphone_number",
-              "api-reference/test_framework/post-test_frameworkphone_number",
-              "api-reference/test_framework/get-test_frameworkphone_numberinbound",    
-              "api-reference/test_framework/get-test_frameworkphone_number-",
-              "api-reference/test_framework/put-test_frameworkphone_number-",
-              "api-reference/test_framework/delete-test_frameworkphone_number-",       
-              "api-reference/test_framework/patch-test_frameworkphone_number-",        
-              "api-reference/test_framework/get-test_frameworkpredefined-metrics",     
-              "api-reference/test_framework/post-test_frameworkpredefined-metrics",    
-              "api-reference/test_framework/post-test_frameworkpredefined-metricscopy",
-              "api-reference/test_framework/get-test_frameworkpredefined-metrics-",    
-              "api-reference/test_framework/put-test_frameworkpredefined-metrics-",    
-              "api-reference/test_framework/delete-test_frameworkpredefined-metrics-", 
-              "api-reference/test_framework/patch-test_frameworkpredefined-metrics-",  
-              "api-reference/test_framework/post-test_frameworkprocess-message-response",
-              "api-reference/test_framework/get-test_frameworkresults",
-              "api-reference/test_framework/post-test_frameworkresults",
-              "api-reference/test_framework/get-test_frameworkresults-",
-              "api-reference/test_framework/put-test_frameworkresults-",
-              "api-reference/test_framework/delete-test_frameworkresults-",
-              "api-reference/test_framework/patch-test_frameworkresults-",
-              "api-reference/test_framework/post-test_frameworkresults-evaluate_metrics",
-              "api-reference/test_framework/post-test_frameworkresults-rerun",
-              "api-reference/test_framework/post-test_frameworkresults-rerun_text",    
-              "api-reference/test_framework/get-test_frameworkruns",
-              "api-reference/test_framework/post-test_frameworkruns",
-              "api-reference/test_framework/get-test_frameworkruns-",
-              "api-reference/test_framework/put-test_frameworkruns-",
-              "api-reference/test_framework/delete-test_frameworkruns-",
-              "api-reference/test_framework/patch-test_frameworkruns-",
-              "api-reference/test_framework/post-test_frameworkruns-end_call",
-              "api-reference/test_framework/get-test_frameworkruns-get_listen_url",    
-              "api-reference/test_framework/post-test_frameworkruns-mark_critical_scenario_wrong",
-              "api-reference/test_framework/get-test_frameworkscenarios",
-              "api-reference/test_framework/post-test_frameworkscenarios",
-              "api-reference/test_framework/post-test_frameworkscenariosdelete_scenarios",
-              "api-reference/test_framework/post-test_frameworkscenariosrun_scenarios",
-              "api-reference/test_framework/post-test_frameworkscenariosrun_scenarios_text",
-              "api-reference/test_framework/get-test_frameworkscenariostags",
-              "api-reference/test_framework/get-test_frameworkscenarios-",
-              "api-reference/test_framework/put-test_frameworkscenarios-",
-              "api-reference/test_framework/delete-test_frameworkscenarios-",
-              "api-reference/test_framework/patch-test_frameworkscenarios-",
-              "api-reference/test_framework/post-test_frameworkscenarios-edit",        
-              "api-reference/test_framework/post-test_frameworkscenarios-run_scenario_demo",
-              "api-reference/test_framework/post-test_frameworkscenarios-switch_phone_number",
-              "api-reference/test_framework/post-test_frameworktest-outbound-caller",  
-              "api-reference/test_framework/get-test_frameworktest-sets",
-              "api-reference/test_framework/post-test_frameworktest-sets",
-              "api-reference/test_framework/post-test_frameworktest-setscreate_from_call_log",
-              "api-reference/test_framework/post-test_frameworktest-setscreate_from_call_logs",
-              "api-reference/test_framework/post-test_frameworktest-setscreate_from_run",
-              "api-reference/test_framework/post-test_frameworktest-setscreate_testsets",
-              "api-reference/test_framework/get-test_frameworktest-sets-",
-              "api-reference/test_framework/put-test_frameworktest-sets-",
-              "api-reference/test_framework/delete-test_frameworktest-sets-",
-              "api-reference/test_framework/patch-test_frameworktest-sets-",
-              "api-reference/test_framework/post-test_frameworktest-sets-add_metrics", 
-              "api-reference/test_framework/post-test_frameworktest-sets-review_metrics",
-              "api-reference/test_framework/get-test_frameworktest-sets-voice_recording_url",
-              "api-reference/test_framework/get-test_frameworkv1aiagents-external",    
-              "api-reference/test_framework/post-test_frameworkv1aiagents-external",   
-              "api-reference/test_framework/get-test_frameworkv1aiagents-external-",   
-              "api-reference/test_framework/put-test_frameworkv1aiagents-external-",   
-              "api-reference/test_framework/delete-test_frameworkv1aiagents-external-",
-              "api-reference/test_framework/patch-test_frameworkv1aiagents-external-", 
-              "api-reference/test_framework/put-test_frameworkv1critical-metric-scenarios-external-",
-              "api-reference/test_framework/patch-test_frameworkv1critical-metric-scenarios-external-",
-              "api-reference/test_framework/get-test_frameworkv1metrics-external",     
-              "api-reference/test_framework/post-test_frameworkv1metrics-external",    
-              "api-reference/test_framework/post-test_frameworkv1metrics-externalbulk_create",
-              "api-reference/test_framework/post-test_frameworkv1metrics-externalgenerate_metrics",
-              "api-reference/test_framework/get-test_frameworkv1metrics-external-",    
-              "api-reference/test_framework/put-test_frameworkv1metrics-external-",    
-              "api-reference/test_framework/delete-test_frameworkv1metrics-external-", 
-              "api-reference/test_framework/patch-test_frameworkv1metrics-external-",  
-              "api-reference/test_framework/get-test_frameworkv1personalities-external",
-              "api-reference/test_framework/get-test_frameworkv1personalities-external-",
-              "api-reference/test_framework/get-test_frameworkv1phone-numbers-external",
-              "api-reference/test_framework/post-test_frameworkv1phone-numbers-external",
-              "api-reference/test_framework/get-test_frameworkv1phone-numbers-externalinbound",
-              "api-reference/test_framework/get-test_frameworkv1phone-numbers-external-",
-              "api-reference/test_framework/put-test_frameworkv1phone-numbers-external-",
-              "api-reference/test_framework/delete-test_frameworkv1phone-numbers-external-",
-              "api-reference/test_framework/patch-test_frameworkv1phone-numbers-external-",
-              "api-reference/test_framework/get-test_frameworkv1predefined-metrics-external",
-              "api-reference/test_framework/get-test_frameworkv1predefined-metrics-external-",
-              "api-reference/test_framework/get-test_frameworkv1results-external",     
-              "api-reference/test_framework/get-test_frameworkv1results-externalresult_ids",
-              "api-reference/test_framework/get-test_frameworkv1results-external-",    
-              "api-reference/test_framework/post-test_frameworkv1results-external-evaluate_metrics",
-              "api-reference/test_framework/post-test_frameworkv1results-external-rerun",
-              "api-reference/test_framework/get-test_frameworkv1runs-externalbulk",    
-              "api-reference/test_framework/get-test_frameworkv1scenarios-external",   
-              "api-reference/test_framework/post-test_frameworkv1scenarios-external",  
-              "api-reference/test_framework/post-test_frameworkv1scenarios-externalgenerate",
-              "api-reference/test_framework/post-test_frameworkv1scenarios-externalrun_scenarios",
-              "api-reference/test_framework/post-test_frameworkv1scenarios-externalrun_scenarios_text",
-              "api-reference/test_framework/get-test_frameworkv1scenarios-external-",  
-              "api-reference/test_framework/put-test_frameworkv1scenarios-external-",  
-              "api-reference/test_framework/delete-test_frameworkv1scenarios-external-",
-              "api-reference/test_framework/patch-test_frameworkv1scenarios-external-" 
-            ]
-          },
-          {
-            "group": "User",
-            "pages": [
-              "api-reference/user/get-userapiv1user-api-key",
-              "api-reference/user/get-userapiv1user-api-key-",
-              "api-reference/user/get-userinvites",
-              "api-reference/user/get-userinvitesmy_invites",
-              "api-reference/user/post-userinvitessend_invites",
-              "api-reference/user/get-userinvites-",
-              "api-reference/user/delete-userinvites-",
-              "api-reference/user/post-userinvites-accept_invite",
-              "api-reference/user/post-userinvites-reject_invite",
-              "api-reference/user/get-useris-active",
-              "api-reference/user/get-usermemberships",
-              "api-reference/user/get-usermemberships-",
-              "api-reference/user/get-userorganizations",
-              "api-reference/user/post-userorganizations",
-              "api-reference/user/get-userorganizations-",
-              "api-reference/user/put-userorganizations-",
-              "api-reference/user/delete-userorganizations-",
-              "api-reference/user/patch-userorganizations-",
-              "api-reference/user/get-userorganizations-overview",
-              "api-reference/user/get-userorganizations-overviewagents",
-              "api-reference/user/get-userprovider-credentials",
-              "api-reference/user/post-userprovider-credentials",
-              "api-reference/user/get-userprovider-credentials-",
-              "api-reference/user/put-userprovider-credentials-",
-              "api-reference/user/delete-userprovider-credentials-",
-              "api-reference/user/patch-userprovider-credentials-",
-              "api-reference/user/post-userv1embeddedlogin",
-              "api-reference/user/post-userv1embeddedrefresh",
-              "api-reference/user/post-userwebhooksupabase"
-            ]
-          },
-          {
-            "group": "Workflows",
-            "pages": [
-              "api-reference/workflows/get-workflowsedges",
-              "api-reference/workflows/post-workflowsedges",
-              "api-reference/workflows/get-workflowsedges-",
-              "api-reference/workflows/put-workflowsedges-",
-              "api-reference/workflows/delete-workflowsedges-",
-              "api-reference/workflows/patch-workflowsedges-",
-              "api-reference/workflows/get-workflowsnode-metrics",
-              "api-reference/workflows/post-workflowsnode-metrics",
-              "api-reference/workflows/get-workflowsnode-metrics-",
-              "api-reference/workflows/put-workflowsnode-metrics-",
-              "api-reference/workflows/delete-workflowsnode-metrics-",
-              "api-reference/workflows/patch-workflowsnode-metrics-",
-              "api-reference/workflows/get-workflowsnodes",
-              "api-reference/workflows/post-workflowsnodes",
-              "api-reference/workflows/get-workflowsnodes-",
-              "api-reference/workflows/put-workflowsnodes-",
-              "api-reference/workflows/delete-workflowsnodes-",
-              "api-reference/workflows/patch-workflowsnodes-",
-              "api-reference/workflows/get-workflowsworkflows",
-              "api-reference/workflows/post-workflowsworkflows",
-              "api-reference/workflows/get-workflowsworkflows-",
-              "api-reference/workflows/put-workflowsworkflows-",
-              "api-reference/workflows/delete-workflowsworkflows-",
-              "api-reference/workflows/patch-workflowsworkflows-"
-            ]
-          },
-          {
-            "group": "Enums",
-            "pages": [
-              "api-reference/enums/get-enums"
-            ]
-          }
-        ]
-      
+        {
+          "group": "Calls",
+          "pages": [
+            "api-reference/observability/post-observabilityv1observe",
+            "api-reference/observability/get-observabilityv1call-logs-external-",
+            "api-reference/observability/post-observabilityv1call-logs-externalrerun_evaluation",
+            "api-reference/observability/delete-observabilityv1call-logs-external-"
+          ]
+        },
+        {
+          "group": "Agents",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1aiagents-external",
+            "api-reference/test_framework/post-test_frameworkv1aiagents-external",
+            "api-reference/test_framework/patch-test_frameworkv1aiagents-external-",
+            "api-reference/test_framework/delete-test_frameworkv1aiagents-external-",
+            "api-reference/test_framework/get-test_frameworkv1aiagents-external-",
+            "api-reference/test_framework/put-test_frameworkv1aiagents-external-"
+          ]
+        },
+        {
+          "group": "Metrics",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1metrics-external",
+            "api-reference/test_framework/post-test_frameworkv1metrics-external",
+            "api-reference/test_framework/post-test_frameworkv1metrics-externalgenerate_metrics",
+            "api-reference/test_framework/post-test_frameworkv1metrics-externalbulk_create",
+            "api-reference/test_framework/get-test_frameworkv1metrics-external-",
+            "api-reference/test_framework/patch-test_frameworkv1metrics-external-",
+            "api-reference/test_framework/patch-test_frameworkv1critical-metric-scenarios-external-",
+            "api-reference/test_framework/delete-test_frameworkv1metrics-external-"
+          ]
+        },
+        {
+          "group": "Evaluators",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1scenarios-external",
+            "api-reference/test_framework/post-test_frameworkv1scenarios-external",
+            "api-reference/test_framework/get-test_frameworkv1scenarios-external-",
+            "api-reference/test_framework/delete-test_frameworkv1scenarios-external-",
+            "api-reference/test_framework/patch-test_frameworkv1scenarios-external-",
+            "api-reference/test_framework/post-test_frameworkv1scenarios-externalrun_scenarios"
+          ]
+        },
+        {
+          "group": "Results",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1results-external",
+            "api-reference/test_framework/get-test_frameworkv1results-external-",
+            "api-reference/test_framework/post-test_frameworkv1results-external-evaluate_metrics",
+            "api-reference/test_framework/post-test_frameworkv1results-external-rerun"
+          ]
+        },
+        {
+          "group": "Runs",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1runs-externalbulk"
+          ]
+        },
+        {
+          "group": "Personalities",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1personalities-external"
+          ]
+        },
+        {
+          "group": "Predefined Metrics",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1predefined-metrics-external"
+          ]
+        },
+        {
+          "group": "Phone Numbers",
+          "pages": [
+            "api-reference/test_framework/get-test_frameworkv1phone-numbers-externalinbound"
+          ]
+        }
+      ]
     },
     {
       "group": "API Documentation",
@@ -440,16 +245,16 @@
     },
     {
       "group": "Embedding Documentation",
-         "pages": [
-           "documentation/embed/generate-token",
-           "documentation/embed/refreshing-expired-token",
-           {
-             "group": "Dashboard Embedding",
-             "pages": [
-                "documentation/embed/result-embedding"
-             ]
-           }
-         ]
+      "pages": [
+        "documentation/embed/generate-token",
+        "documentation/embed/refreshing-expired-token",
+        {
+          "group": "Dashboard Embedding",
+          "pages": [
+            "documentation/embed/result-embedding"
+          ]
+        }
+      ]
     }
   ],
   "footerSocials": {
