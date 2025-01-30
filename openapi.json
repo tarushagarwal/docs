@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Vocera AI API",
-    "description": "API documentation for Vocera AI API",
+    "description": "Complete API documentation for Vocera AI Platform. This API provides endpoints for managing AI-powered conversations, call analytics, and quality monitoring features.",
     "version": "v1"
   },
   "servers": [
@@ -22,9 +22,10 @@
           "enums"
         ],
         "operationId": "enums_list",
+        "description": "Retrieve a list of all available enumeration values used throughout the API",
         "responses": {
           "200": {
-            "description": "",
+            "description": "Successfully retrieved list of enumeration values",
             "content": {}
           }
         }
@@ -36,11 +37,12 @@
           "observability"
         ],
         "operationId": "observability_call_log_list",
+        "description": "Retrieve a paginated list of call logs with detailed filtering options",
         "parameters": [
           {
             "name": "call_ended_reason__in",
             "in": "query",
-            "description": "call_ended_reason__in",
+            "description": "Filter calls by one or more end reasons (comma-separated). Example: 'HANGUP,TRANSFER'",
             "schema": {
               "type": "string"
             }
@@ -48,15 +50,7 @@
           {
             "name": "call_ended_reason__icontains",
             "in": "query",
-            "description": "call_ended_reason__icontains",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id__in",
-            "in": "query",
-            "description": "id__in",
+            "description": "Filter calls where end reason contains the specified text (case-insensitive)",
             "schema": {
               "type": "string"
             }
@@ -64,7 +58,7 @@
           {
             "name": "timestamp__gte",
             "in": "query",
-            "description": "timestamp__gte",
+            "description": "Filter calls after or equal to this timestamp (ISO 8601 format)",
             "schema": {
               "type": "string"
             }
@@ -72,7 +66,7 @@
           {
             "name": "timestamp__lte",
             "in": "query",
-            "description": "timestamp__lte",
+            "description": "Filter calls before or equal to this timestamp (ISO 8601 format)",
             "schema": {
               "type": "string"
             }
@@ -80,7 +74,7 @@
           {
             "name": "duration__gte",
             "in": "query",
-            "description": "duration__gte",
+            "description": "Filter calls with duration greater than or equal to specified seconds",
             "schema": {
               "type": "string"
             }
@@ -88,103 +82,15 @@
           {
             "name": "duration__lte",
             "in": "query",
-            "description": "duration__lte",
+            "description": "Filter calls with duration less than or equal to specified seconds",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "customer_number__in",
-            "in": "query",
-            "description": "customer_number__in",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "customer_number__icontains",
-            "in": "query",
-            "description": "customer_number__icontains",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "call_id__in",
-            "in": "query",
-            "description": "call_id__in",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "call_id__icontains",
-            "in": "query",
-            "description": "call_id__icontains",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "success",
-            "in": "query",
-            "description": "success",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "metrics",
-            "in": "query",
-            "description": "metrics",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "description": "search",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "timestamp_range",
-            "in": "query",
-            "description": "timestamp_range",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "call_ended_reason_not_equals",
-            "in": "query",
-            "description": "call_ended_reason_not_equals",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "A page number within the paginated result set.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "page_size",
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "schema": {
-              "type": "integer"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Successfully retrieved paginated list of call logs",
             "content": {
               "application/json": {
                 "schema": {
@@ -195,20 +101,24 @@
                   "type": "object",
                   "properties": {
                     "count": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Total number of call logs matching the filter criteria"
                     },
                     "next": {
                       "type": "string",
                       "format": "uri",
-                      "nullable": true
+                      "nullable": true,
+                      "description": "URL to fetch the next page of results, null if this is the last page"
                     },
                     "previous": {
                       "type": "string",
                       "format": "uri",
-                      "nullable": true
+                      "nullable": true,
+                      "description": "URL to fetch the previous page of results, null if this is the first page"
                     },
                     "results": {
                       "type": "array",
+                      "description": "List of call log entries for the current page",
                       "items": {
                         "$ref": "#/components/schemas/CallLogList"
                       }
@@ -225,7 +135,9 @@
           "observability"
         ],
         "operationId": "observability_call_log_create",
+        "description": "Create a new call log entry with detailed information about a conversation",
         "requestBody": {
+          "description": "Call log details to be created",
           "content": {
             "application/json": {
               "schema": {
@@ -237,7 +149,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
+            "description": "Call log entry successfully created",
             "content": {
               "application/json": {
                 "schema": {
@@ -245,9 +157,14 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request data provided"
+          },
+          "401": {
+            "description": "Authentication credentials were not provided or are invalid"
           }
-        },
-        "x-codegen-request-body-name": "data"
+        }
       }
     },
     "/observability/call_log/create_scenarios/": {
@@ -5798,69 +5715,48 @@
           "test_framework"
         ],
         "operationId": "test_framework_results_external_list",
-        "description": "Get a list of test results",
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
+        "description": "Retrieve a list of test results with filtering options",
         "parameters": [
           {
-            "name": "page",
+            "name": "agent",
             "in": "query",
-            "description": "Page number for pagination",
-            "required": false,
+            "description": "Filter results by specific agent ID",
             "schema": {
-              "type": "integer",
-              "default": 1
+              "type": "integer"
             }
           },
           {
-            "name": "page_size",
+            "name": "status",
             "in": "query",
-            "description": "Number of items per page",
-            "required": false,
+            "description": "Filter results by their current status (e.g., completed, pending)",
             "schema": {
-              "type": "integer",
-              "default": 10
+              "type": "string",
+              "enum": ["completed", "pending", "in_progress", "failed"]
+            }
+          },
+          {
+            "name": "created_after",
+            "in": "query",
+            "description": "Filter results created after this timestamp (ISO 8601 format)",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "List of test results retrieved successfully",
+            "description": "Successfully retrieved list of test results",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "count": {
-                      "type": "integer",
-                      "description": "Total number of results"
-                    },
-                    "next": {
-                      "type": "string",
-                      "nullable": true,
-                      "description": "URL to next page of results"
-                    },
-                    "previous": {
-                      "type": "string",
-                      "nullable": true,
-                      "description": "URL to previous page of results"
-                    },
-                    "results": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/TestResult"
-                      }
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResultExternal"
                   }
                 }
               }
             }
-          },
-          "401": {
-            "description": "Unauthorized - invalid API key"
           }
         }
       }
@@ -8013,100 +7909,38 @@
         }
       },
       "CallLogDetail": {
-        "required": [
-          "call_id",
-          "duration"
-        ],
         "type": "object",
+        "description": "Detailed information about a single conversation or call",
+        "required": ["call_id", "timestamp", "duration"],
         "properties": {
-          "id": {
-            "title": "ID",
-            "type": "integer",
-            "readOnly": true
-          },
-          "duration": {
-            "title": "Duration",
-            "type": "string"
-          },
-          "voice_recording_url": {
-            "title": "Voice recording url",
+          "call_id": {
             "type": "string",
-            "readOnly": true
-          },
-          "critical_categories": {
-            "title": "Critical categories",
-            "type": "string",
-            "readOnly": true
+            "description": "Unique identifier for the call"
           },
           "timestamp": {
-            "title": "Timestamp",
             "type": "string",
             "format": "date-time",
-            "readOnly": true
+            "description": "When the call started (ISO 8601 format)"
           },
-          "success": {
-            "title": "Success",
-            "type": "boolean",
-            "nullable": true
-          },
-          "evaluation": {
-            "title": "Evaluation",
-            "type": "object",
-            "properties": {},
-            "nullable": true
-          },
-          "transcript": {
-            "title": "Transcript",
-            "minLength": 1,
-            "type": "string"
-          },
-          "transcript_object": {
-            "title": "Transcript object",
-            "type": "object",
-            "properties": {},
-            "nullable": true
+          "duration": {
+            "type": "integer",
+            "description": "Duration of the call in seconds"
           },
           "call_ended_reason": {
-            "title": "Call ended reason",
-            "maxLength": 100,
-            "type": "string"
+            "type": "string",
+            "description": "Reason why the call ended (e.g., HANGUP, TRANSFER)",
+            "enum": ["HANGUP", "TRANSFER", "ERROR", "TIMEOUT"]
           },
-          "dropoff_point": {
-            "title": "Dropoff point",
-            "maxLength": 1000,
-            "type": "string"
-          },
-          "dropoff_reason": {
-            "title": "Dropoff reason",
-            "maxLength": 1000,
-            "type": "string"
-          },
-          "customer_number": {
-            "title": "Customer number",
-            "maxLength": 15,
-            "type": "string"
-          },
-          "user_generated_transcript": {
-            "title": "User generated transcript",
+          "metrics": {
             "type": "object",
-            "properties": {},
-            "nullable": true
+            "description": "Various metrics collected during the call",
+            "additionalProperties": {
+              "type": "number"
+            }
           },
-          "metadata": {
-            "title": "Metadata",
-            "type": "object",
-            "properties": {}
-          },
-          "call_id": {
-            "title": "Call id",
-            "maxLength": 100,
-            "minLength": 1,
-            "type": "string"
-          },
-          "agent": {
-            "title": "Agent",
-            "type": "integer",
-            "nullable": true
+          "transcription": {
+            "type": "string",
+            "description": "Full transcription of the conversation if available"
           }
         }
       },
@@ -8897,29 +8731,51 @@
       },
       "ResultDetail": {
         "required": [
-          "agent"
+          "agent",
+          "duration",
+          "call_id",
+          "response"
         ],
         "type": "object",
         "properties": {
           "id": {
             "title": "ID",
             "type": "integer",
-            "readOnly": true
+            "readOnly": true,
+            "description": "Unique identifier for the result"
           },
           "name": {
             "title": "Name",
             "maxLength": 255,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Name of the result"
           },
           "agent": {
             "title": "Agent",
-            "type": "integer"
+            "type": "integer",
+            "description": "Agent identifier associated with the result"
+          },
+          "duration": {
+            "title": "Duration",
+            "type": "string",
+            "description": "Duration of the operation"
+          },
+          "call_id": {
+            "title": "Call ID",
+            "type": "string",
+            "description": "Unique identifier for the call"
+          },
+          "response": {
+            "title": "Response",
+            "type": "object",
+            "description": "Response details from the operation"
           },
           "status": {
             "title": "Status",
             "type": "string",
             "readOnly": true,
+            "description": "Current status of the result",
             "enum": [
               "running",
               "completed",
@@ -8933,7 +8789,8 @@
           "met_expected_outcome_count": {
             "title": "Met expected outcome count",
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "description": "Count of outcomes that met expectations"
           },
           "total_expected_outcome_count": {
             "title": "Total expected outcome count",
@@ -9539,34 +9396,37 @@
         }
       },
       "MetricDetailExternal": {
-        "required": [
-          "agent",
-          "name"
-        ],
+        "required": ["agent", "name"],
         "type": "object",
+        "description": "Detailed configuration for a quality monitoring metric",
         "properties": {
           "id": {
             "title": "ID",
             "type": "integer",
-            "readOnly": true
+            "readOnly": true,
+            "description": "Unique identifier for the metric"
           },
           "agent": {
             "title": "Agent",
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the agent this metric is associated with"
           },
           "name": {
             "title": "Name",
             "maxLength": 255,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Display name of the metric"
           },
           "description": {
             "title": "Description",
-            "type": "string"
+            "type": "string",
+            "description": "Detailed description explaining the purpose and evaluation criteria of the metric"
           },
           "eval_type": {
-            "title": "Eval type",
+            "title": "Evaluation Type",
             "type": "string",
+            "description": "Type of evaluation for this metric. Determines how the metric is scored and displayed",
             "enum": [
               "binary_workflow_adherence",
               "binary_qualitative",
@@ -9574,39 +9434,6 @@
               "numeric",
               "enum"
             ]
-          },
-          "enum_values": {
-            "title": "Enum values",
-            "type": "object",
-            "properties": {}
-          },
-          "audio_enabled": {
-            "title": "Audio enabled",
-            "type": "boolean"
-          },
-          "prompt_enabled": {
-            "title": "Prompt enabled",
-            "type": "boolean"
-          },
-          "prompt": {
-            "title": "Prompt",
-            "type": "string"
-          },
-          "display_order": {
-            "title": "Display order",
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          },
-          "overall_score": {
-            "title": "Overall score",
-            "type": "string",
-            "readOnly": true
-          },
-          "total_score": {
-            "title": "Total score",
-            "type": "string",
-            "readOnly": true
           }
         }
       },
@@ -9616,26 +9443,31 @@
           "name"
         ],
         "type": "object",
+        "description": "Configuration for an AI personality that defines its behavior and characteristics",
         "properties": {
           "id": {
             "title": "ID",
             "type": "integer",
-            "readOnly": true
+            "readOnly": true,
+            "description": "Unique identifier for the personality"
           },
           "name": {
             "title": "Name",
             "maxLength": 255,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Display name of the personality"
           },
           "description": {
             "title": "Description",
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Detailed description of the personality's characteristics, behavior, and use cases"
           },
           "language": {
             "title": "Language",
             "type": "string",
+            "description": "Primary language code (ISO 639-1) that this personality is designed to communicate in",
             "enum": [
               "ar",
               "bg",
@@ -9677,76 +9509,64 @@
         }
       },
       "PredefinedMetricExternal": {
-        "required": [
-          "description",
-          "name"
-        ],
+        "required": ["description", "name"],
         "type": "object",
+        "description": "Pre-configured metric template that can be used for quality monitoring",
         "properties": {
           "id": {
             "title": "ID",
             "type": "integer",
-            "readOnly": true
+            "readOnly": true,
+            "description": "Unique identifier for the predefined metric"
           },
           "name": {
             "title": "Name",
             "maxLength": 255,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Display name of the predefined metric"
           },
           "description": {
             "title": "Description",
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Detailed explanation of what this metric measures and how it should be used"
           },
           "code": {
             "title": "Code",
             "maxLength": 255,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Unique code identifier used to reference this metric in the system"
           }
         }
       },
       "ResultExternal": {
-        "required": [
-          "agent"
-        ],
+        "required": ["agent"],
         "type": "object",
+        "description": "Results from a quality monitoring evaluation",
         "properties": {
           "id": {
             "title": "ID",
             "type": "integer",
-            "readOnly": true
+            "readOnly": true,
+            "description": "Unique identifier for the evaluation result"
           },
           "agent": {
             "title": "Agent",
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the agent whose interaction was evaluated"
           },
           "status": {
             "title": "Status",
             "type": "string",
+            "description": "Current status of the evaluation result (e.g., completed, pending, in_progress)",
             "enum": [
-              "running",
               "completed",
-              "failed",
               "pending",
               "in_progress",
-              "evaluating",
-              "in_queue"
+              "failed"
             ]
-          },
-          "success_rate": {
-            "title": "Success rate",
-            "type": "number"
-          },
-          "run_as_text": {
-            "title": "Run as text",
-            "type": "boolean"
-          },
-          "created_at": {
-            "title": "Created at",
-            "type": "string",
-            "format": "date-time"
           }
         }
       },
@@ -10606,6 +10426,12 @@
         "type": "apiKey",
         "name": "X-VOCERA-API-KEY",
         "in": "header"
+      },
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-VOCERA-API-KEY",
+        "description": "API key authentication. Add your API key with header 'X-VOCERA-API-KEY'"
       }
     }
   },
