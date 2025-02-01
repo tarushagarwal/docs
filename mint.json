@@ -45,7 +45,8 @@
           "pages": [
             "key-concepts/testing-agents/retell-integration",
             "key-concepts/testing-agents/vapi-integration",
-            "key-concepts/testing-agents/custom-agent"
+            "key-concepts/testing-agents/custom-agent",
+            "key-concepts/testing-agents/outbound-testing"
           ]
         },
         {
